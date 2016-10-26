@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import Read from '../library'
+import Read from '../bookShelf'
 import SikButts from '../devButtons'
 
 export default HomePage = () => (

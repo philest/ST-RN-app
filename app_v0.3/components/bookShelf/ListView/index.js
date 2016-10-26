@@ -11,13 +11,13 @@ export default class StoryList extends Component {
     // this._renderRow = this._renderRow.bind(this)
     this.ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !==r2 })
     this.state = {
-      dataSource: this.ds.cloneWithRows(this.props.books)
+      dataSource: this.ds.cloneWithRows(this.props.items)
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      dataSource: this.ds.cloneWithRows(nextProps.books)
+      dataSource: this.ds.cloneWithRows(nextprops.items)
     })
   }
 

@@ -18,7 +18,7 @@ const renderNew = (timeFirstRead) => {
 const itemBuffer = 8
 const thumbHeightBump = 25
 
-export default GridItem = ({title, timeFirstRead, imgSrc, rowItemWidth, customPress}) => (
+export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, customPress}) => (
     <View style={[styles.rowContainer, {height:rowItemWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
       <View  style={[styles.thumbContainer, {width:rowItemWidth-itemBuffer, height:rowItemWidth+thumbHeightBump}]} >
         <TouchableOpacity onPress={customPress} >

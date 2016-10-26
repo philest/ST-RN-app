@@ -20,7 +20,7 @@ export default STGridView = ({items, itemsPerRow}) => (
         // if the item is not a dummy, we actually render stuff
         if (!r.dummy) {
           return (
-            <LibraryGridItem
+            <GridItem
               key={rid}
               index={parseInt(r.key)} //TODO no... don't do this....
               // TODO:

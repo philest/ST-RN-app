@@ -10,14 +10,15 @@ const createStoreWithNavigation = createNavigationEnabledStore({
 
 
 
-import libraryList from './components/library/LibraryReducer'
+import libraryList from './components/bookShelf/BookShelfReducer'
+import readerState from './components/reader/ReaderReducer'
 const store = createStoreWithNavigation(
   /* combineReducers and your normal create store things here! */
   combineReducers({
     navigation: NavigationReducer,
-    libraryList
-    // other reducers
-  })
+    libraryList,
+    readerState
+  }),
 );
 
 export default store;

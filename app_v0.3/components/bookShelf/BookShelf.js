@@ -4,8 +4,8 @@ import {
 } from 'react-native'
 UIManager.setLayoutAnimationEnabledExperimental &&   UIManager.setLayoutAnimationEnabledExperimental(true);
 
-import STGridView from './gridView'
-import STListView from './listView'
+import STGridView from './GridView'
+import STListView from './ListView'
 
 // this is an incredibly dumb hack to make the grid look nice
 const _pushDummies = (arr) => [...arr, {dummy:true}, {dummy:true}]
