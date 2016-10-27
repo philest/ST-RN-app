@@ -18,8 +18,8 @@ const getVisibleBooks = (books, filter=ALL) => {
 }
 
 const mapStateToProps = (state) => ({
-  visibleBooks: getVisibleBooks(state.libraryList, ALL),
-  displayFormat: state.readerState.bookShelfDisplayFormat
+  visibleBooks: getVisibleBooks(state.bookList, ALL),
+  displayFormat: state.bookShelf.bookShelfDisplayFormat
 })
 
 export default connect(mapStateToProps)(BookShelf)

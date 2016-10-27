@@ -1,24 +1,25 @@
 // tab router
 import { createNavigationEnabledStore, NavigationReducer } from '@exponent/ex-navigation';
 import { combineReducers, createStore } from 'redux';
+import { enableBatching }  from 'redux-batched-actions'
 
 const createStoreWithNavigation = createNavigationEnabledStore({
   createStore,
   navigationStateKey: 'navigation',
 });
 
+import bookShelf from './components/bookShelf/BookShelfReducer'
+import bookList from './components/bookShelf/BookListReducer'
 
 
+const rootReducer = combineReducers({
+  navigation: NavigationReducer,
+  bookShelf,
+  bookList
+})
 
-import libraryList from './components/bookShelf/BookShelfReducer'
-import readerState from './components/reader/ReaderReducer'
 const store = createStoreWithNavigation(
-  /* combineReducers and your normal create store things here! */
-  combineReducers({
-    navigation: NavigationReducer,
-    libraryList,
-    readerState
-  }),
+  enableBatching(rootReducer)
 );
 
 export default store;

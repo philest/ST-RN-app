@@ -7,8 +7,8 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 
 import {
-  TabNavigation,
-  TabNavigationItem as TabItem,
+  SlidingTabNavigation,
+  SlidingTabNavigationItem as TabItem,
 } from '@exponent/ex-navigation';
 
 
@@ -21,7 +21,7 @@ export default class Home extends Component {
 
   render () {
     return (
-      <TabNavigation
+      <SlidingTabNavigation
               id="main"
               navigatorUID="main"
               initialTab="home">
@@ -46,7 +46,7 @@ export default class Home extends Component {
                   </Text>
                 </View>
               </TabItem>
-            </TabNavigation>
+            </SlidingTabNavigation>
     )
   }
 }

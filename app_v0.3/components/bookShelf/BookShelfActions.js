@@ -1,7 +1,7 @@
 /* regular actions */
 export const ITEM_MARK_READ = 'ITEM_MARK_READ'
 export const ITEM_REVEAL    = 'ITEM_REVEAL'
-export const OPEN_READER    = 'OPEN_READER'
+export const OPEN_READER    = 'UPDATE_LAST_TIME_READ'
 export const RESET_LIBRARY  = 'RESET_LIBRARY'
 
 
@@ -9,7 +9,7 @@ export const ITEM_ADD       = 'ITEM_ADD'
 
 
 export const resetLibrary = () => ({
-  type:RESET_LIBRARY
+  type: RESET_LIBRARY
 })
 
 export const itemMarkRead = (index) => ({
@@ -24,7 +24,7 @@ export const itemReveal = () => ({
   time: Date.now()
 })
 
-export const openReader = (index) => ({
+export const updateLastTimeRead = (index) => ({
   type: OPEN_READER,
   time: Date.now(),
   index
