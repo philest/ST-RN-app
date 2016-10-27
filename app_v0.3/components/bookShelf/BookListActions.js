@@ -5,9 +5,6 @@ export const OPEN_READER    = 'UPDATE_LAST_TIME_READ'
 export const RESET_LIBRARY  = 'RESET_LIBRARY'
 
 
-export const ITEM_ADD       = 'ITEM_ADD'
-
-
 export const resetLibrary = () => ({
   type: RESET_LIBRARY
 })

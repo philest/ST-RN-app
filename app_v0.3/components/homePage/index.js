@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text
+  Text,
+  View
 } from 'react-native';
 import {
-  SlidingTabNavigation,
-  SlidingTabNavigationItem,
+  TabNavigation,
+  TabNavigationItem,
 } from '@exponent/ex-navigation';
 
 import BookShelf from './BookShelfContainer'
 import Messages  from './MessagesContainer'
 
-export default class SlidingTabNavigationExample extends Component {
+export default class TabNavigationExample extends Component {
   static route = {
-    navigationBar: {
-      title: 'StoryTime',
-      ...SlidingTabNavigation.navigationBarStyles,
-    },
+    // navigationBar: {
+    //   title: 'StoryTime',
+    //   ...TabNavigation.navigationBarStyles,
+    // },
   }
 
   _renderLabel = ({route}) => {
@@ -31,21 +32,25 @@ export default class SlidingTabNavigationExample extends Component {
   };
 
   render () {return (
-    <SlidingTabNavigation
-      position="top"
-      id="tab-navigation"
-      navigatorUID="tab-navigation"
-      initialTab="read"
-      renderLabel={this._renderLabel}
-      barBackgroundColor="#0084FF"
-      indicatorStyle={styles.tabIndicator}>
-      <SlidingTabNavigationItem id="read">
-        <BookShelf />
-      </SlidingTabNavigationItem>
-      <SlidingTabNavigationItem id="messages">
-        <Messages />
-      </SlidingTabNavigationItem>
-    </SlidingTabNavigation>
+    <View style={{flex:1}}>
+      <TabNavigation
+        position="top"
+        id="tab-navigation"
+        navigatorUID="tab-navigation"
+        initialTab="read"
+        renderLabel={this._renderLabel}
+        // barBackgroundColor="#0084FF"
+        // indicatorStyle={styles.tabIndicator}
+        >
+        <TabNavigationItem id="read">
+          <BookShelf /> PUT THIS IN A FUCKING STACK SHIT FUCK SHIT
+        </TabNavigationItem>
+        <TabNavigationItem id="messages">
+          <Messages />
+        </TabNavigationItem>
+      </TabNavigation>
+    </View>
+
   )}
 }
 const styles = StyleSheet.create({

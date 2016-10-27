@@ -1,4 +1,4 @@
-import { ITEM_REVEAL, ITEM_MARK_READ, OPEN_READER, RESET_LIBRARY } from './BookShelfActions'
+import { ITEM_REVEAL, ITEM_MARK_READ, OPEN_READER, RESET_LIBRARY } from './BookListActions'
 import { updateObject, updateItemInArray } from '../../reducerUtils'
 
 const bookListItem = (state, action) => {

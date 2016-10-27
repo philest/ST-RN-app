@@ -22,31 +22,31 @@ export default class Home extends Component {
   render () {
     return (
       <SlidingTabNavigation
-              id="main"
-              navigatorUID="main"
-              initialTab="home">
-              <TabItem
-                id="home"
-                title="Home"
-                renderIcon={(isSelected) => <Icon name='md-home' size={32} color='blue' /> }>
-                <View>
-                  <Text>
-                    we home
-                  </Text>
-                </View>
-              </TabItem>
+        id="main"
+        navigatorUID="main"
+        initialTab="home">
+        <TabItem
+          id="home"
+          title="Home"
+          renderIcon={(isSelected) => <Icon name='md-home' size={32} color='blue' /> }>
+          <View>
+            <Text>
+              we home
+            </Text>
+          </View>
+        </TabItem>
 
-              <TabItem
-                id="posts"
-                title="Posts"
-                renderIcon={(isSelected) => <Icon name='md-clock' size={32} color='blue' /> }>
-                <View>
-                  <Text>
-                    we clockin
-                  </Text>
-                </View>
-              </TabItem>
-            </SlidingTabNavigation>
+        <TabItem
+          id="posts"
+          title="Posts"
+          renderIcon={(isSelected) => <Icon name='md-clock' size={32} color='blue' /> }>
+          <View>
+            <Text>
+              we clockin
+            </Text>
+          </View>
+        </TabItem>
+      </SlidingTabNavigation>
     )
   }
 }
