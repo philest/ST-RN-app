@@ -16,10 +16,9 @@ import Router from '../../router'
 
 export default class TabNavigationExample extends Component {
   static route = {
-    // navigationBar: {
-    //   title: 'StoryTime',
-    //   ...TabNavigation.navigationBarStyles,
-    // },
+    navigationBar: {
+      title: 'StoryTime',
+    },
   }
 
   _renderLabel = ({route}) => {
@@ -29,40 +28,35 @@ export default class TabNavigationExample extends Component {
     } else if (route.key === 'messages') {
       title = 'Messages';
     }
-
     return <Text style={styles.tabLabel}>{title.toUpperCase()}</Text>;
   };
 
   render () {return (
-
-      <TabNavigation
-        // position="top"
-        id="home"
-        navigatorUID="home"
-        initialTab="read"
-        renderLabel={this._renderLabel}
-        barBackgroundColor="#0084FF"
-        indicatorStyle={styles.tabIndicator}
-        >
-        <TabItem
+    <TabNavigation
+      // position="top"
+      id="home"
+      navigatorUID="home"
+      initialTab="read"
+      renderLabel={this._renderLabel}
+      barBackgroundColor="#0084FF"
+      indicatorStyle={styles.tabIndicator} >
+      <TabItem
+        id="read"
+        navigatorUID='read'>
+        <StackNavigation
           id="read"
-          navigatorUID='read'>
-          <StackNavigation
-            id="read"
-            initialRoute={Router.getRoute('read')}
-          />
-        </TabItem>
-        <TabItem
+          initialRoute={Router.getRoute('read')}
+        />
+      </TabItem>
+      <TabItem
+        id="messages"
+        navigatorUID='messages'>
+        <StackNavigation
           id="messages"
-          navigatorUID='messages'>
-          <StackNavigation
-            id="messages"
-            initialRoute={Router.getRoute('messages')}
-          />
-        </TabItem>
-      </TabNavigation>
-
-
+          initialRoute={Router.getRoute('messages')}
+        />
+      </TabItem>
+    </TabNavigation>
   )}
 }
 const styles = StyleSheet.create({

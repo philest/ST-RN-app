@@ -3,9 +3,6 @@ import React,{ Component } from 'react'
 import { View, StyleSheet }from 'react-native'
 import { Provider }        from 'react-redux'
 
-// components that we wrote
-// import Library             from './components/libraryNav'
-// import Reader              from './components/readerModal'
 
 import Store from './createStore'
 import Router from './router.js'
@@ -15,6 +12,7 @@ import {
   NavigationContext,
   NavigationProvider,
   StackNavigation,
+  TabNavigation
 } from '@exponent/ex-navigation';
 
 const navigationContext = new NavigationContext({
@@ -32,6 +30,11 @@ export default class App extends Component {
           <StackNavigation
             navigatorUID='root'
             initialRoute={Router.getRoute('home')}
+            defaultRouteConfig={{
+              navigationBar: {
+                ...TabNavigation.navigationBarStyles,
+              }
+            }}
             />
           {/* <Home /> */}
         </NavigationProvider>

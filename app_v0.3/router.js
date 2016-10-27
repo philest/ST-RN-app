@@ -3,7 +3,7 @@ import { createRouter } from '@exponent/ex-navigation';
 import Homes from './Homes'
 import HomePage from './components/homePage';
 import SplashPage from './components/splashPage'
-import Reader from './components/reader'
+import Reader from './components/readerPage'
 import BookShelf from './components/homePage/BookShelfContainer'
 import Messages  from './components/homePage/MessagesContainer'
 

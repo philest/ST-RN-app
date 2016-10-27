@@ -20,12 +20,11 @@ import STListView from './ListView'
 const _pushDummies = (arr) => [...arr, {dummy:true}, {dummy:true}]
 
 
-actionBatch = (storyIndex, navUID) => {
+actionBatch = (storyIndex) => {
   return batchActions([
     setCurrentStoryIndex(storyIndex),
-    itemMarkRead(storyIndex),
-    updateLastTimeRead(storyIndex),
-    NavigationActions.push(navUID, Router.getRoute('splash'))
+    itemMarkRead(storyIndex), //TODO: change this api...
+    NavigationActions.push('root', Router.getRoute('splash'))
   ])
 }
 
@@ -34,7 +33,7 @@ export default BookShelf = ({visibleBooks, displayFormat, navigation, dispatch})
     <STGridView
       items={ _pushDummies(visibleBooks) }
       itemsPerRow={ 3 }
-      customPress={ (storyIndex) => dispatch(actionBatch(storyIndex, 'root')) }
+      customPress={ (storyIndex) => dispatch(actionBatch(storyIndex)) }
     />
   )
   else return (
