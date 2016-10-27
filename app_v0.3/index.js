@@ -9,6 +9,7 @@ import { Provider }        from 'react-redux'
 
 import Store from './createStore'
 import Router from './router.js'
+import Home from './components/homePage'
 
 import {
   NavigationContext,
@@ -29,8 +30,10 @@ export default class App extends Component {
       <Provider store={Store}>
         <NavigationProvider context={navigationContext}>
           <StackNavigation
+            navigatorUID='root'
             initialRoute={Router.getRoute('home')}
-          />
+            />
+          {/* <Home /> */}
         </NavigationProvider>
       </Provider>
     )

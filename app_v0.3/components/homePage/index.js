@@ -5,12 +5,14 @@ import {
   View
 } from 'react-native';
 import {
-  TabNavigation,
-  TabNavigationItem,
+  StackNavigation,
+  SlidingTabNavigation as TabNavigation,
+  SlidingTabNavigationItem as TabItem,
 } from '@exponent/ex-navigation';
 
-import BookShelf from './BookShelfContainer'
-import Messages  from './MessagesContainer'
+
+import Router from '../../router'
+
 
 export default class TabNavigationExample extends Component {
   static route = {
@@ -32,24 +34,34 @@ export default class TabNavigationExample extends Component {
   };
 
   render () {return (
-    <View style={{flex:1}}>
+
       <TabNavigation
-        position="top"
-        id="tab-navigation"
-        navigatorUID="tab-navigation"
+        // position="top"
+        id="home"
+        navigatorUID="home"
         initialTab="read"
         renderLabel={this._renderLabel}
-        // barBackgroundColor="#0084FF"
-        // indicatorStyle={styles.tabIndicator}
+        barBackgroundColor="#0084FF"
+        indicatorStyle={styles.tabIndicator}
         >
-        <TabNavigationItem id="read">
-          <BookShelf /> PUT THIS IN A FUCKING STACK SHIT FUCK SHIT
-        </TabNavigationItem>
-        <TabNavigationItem id="messages">
-          <Messages />
-        </TabNavigationItem>
+        <TabItem
+          id="read"
+          navigatorUID='read'>
+          <StackNavigation
+            id="read"
+            initialRoute={Router.getRoute('read')}
+          />
+        </TabItem>
+        <TabItem
+          id="messages"
+          navigatorUID='messages'>
+          <StackNavigation
+            id="messages"
+            initialRoute={Router.getRoute('messages')}
+          />
+        </TabItem>
       </TabNavigation>
-    </View>
+
 
   )}
 }

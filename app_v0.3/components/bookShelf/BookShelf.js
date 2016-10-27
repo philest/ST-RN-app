@@ -34,7 +34,7 @@ export default BookShelf = ({visibleBooks, displayFormat, navigation, dispatch})
     <STGridView
       items={ _pushDummies(visibleBooks) }
       itemsPerRow={ 3 }
-      customPress={ (storyIndex) => dispatch(actionBatch(storyIndex, navigation.currentNavigatorUID)) }
+      customPress={ (storyIndex) => dispatch(actionBatch(storyIndex, 'root')) }
     />
   )
   else return (
