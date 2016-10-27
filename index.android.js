@@ -3,7 +3,6 @@
 import React,{ Component } from 'react'
 import { AppRegistry, View } from 'react-native'
 
-import { Provider } from 'react-redux'
 
 import Src from './app_v0.3'
 

@@ -11,7 +11,6 @@ import {
 } from 'react-native'
 
 import Swiper from 'react-native-swiper'
-import Spinner from 'react-native-spinkit'
 import Image from 'react-native-image-progress'
 
 var { height, width } = Dimensions.get('window');
@@ -23,7 +22,7 @@ const renderPages = (pages) => {
       <View style={ sty.page.imgWrapper }>
         <Image
           source         = {{uri: url}}
-          renderIndicator= { () => <Spinner color='white' type='Wave'/> }
+          //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
           indicatorProps = {{size: 80, color: 'pink', style: { backgroundColor:'black' }}}
           resizeMode     =  'contain'
           style          = { sty.page.img }

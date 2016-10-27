@@ -12,7 +12,8 @@ import {
 
 
 import Router from '../../router'
-
+import Reader from './BookShelfContainer'
+import Messages from './MessagesContainer'
 
 export default class TabNavigationExample extends Component {
   static route = {
@@ -43,18 +44,20 @@ export default class TabNavigationExample extends Component {
       <TabItem
         id="read"
         navigatorUID='read'>
-        <StackNavigation
+        {/* <StackNavigation
           id="read"
           initialRoute={Router.getRoute('read')}
-        />
+        /> */}
+        <Reader/>
       </TabItem>
       <TabItem
         id="messages"
         navigatorUID='messages'>
-        <StackNavigation
+        {/* <StackNavigation
           id="messages"
           initialRoute={Router.getRoute('messages')}
-        />
+        /> */}
+        <Messages />
       </TabItem>
     </TabNavigation>
   )}
