@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { itemReveal, resetLibrary } from '../bookShelf/BookListActions'
 
 const CoolButtons = ({dispatch}) => (
-  <ActionButton buttonColor="rgba(231,76,60,1)" position="left">
+  <ActionButton buttonColor="rgba(231,76,60,1)" position="left" hideShadow={true} offsetY={0} offsetX={20}>
     <ActionButton.Item buttonColor='#9b59b6' title="Get new story" onPress={() => dispatch(itemReveal())}>
       <Icon name="md-add-circle" style={styles.actionButtonIcon} />
     </ActionButton.Item>

@@ -7,7 +7,7 @@ import BookShelf from './BookShelf'
 const ALL = 'ALL'
 
 const getVisibleBooks = (books, filter=ALL) => {
-  console.log(books);
+  // console.log(books);
   switch (filter) {
     case ALL:
       const filteredbook = books.filter(t => t.timeRevealedAt).map((r,i)=> Object.assign({}, r, {key:i}))

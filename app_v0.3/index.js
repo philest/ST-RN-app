@@ -1,6 +1,6 @@
 // vendor components
 import React,{ Component } from 'react'
-import { View, StyleSheet }from 'react-native'
+import { View, StyleSheet, StatusBar }from 'react-native'
 import { Provider }        from 'react-redux'
 
 
@@ -12,7 +12,7 @@ import {
   NavigationContext,
   NavigationProvider,
   StackNavigation,
-  TabNavigation
+  SlidingTabNavigation
 } from '@exponent/ex-navigation';
 
 const navigationContext = new NavigationContext({
@@ -26,17 +26,19 @@ export default class App extends Component {
     return (
       // <Login />
       <Provider store={Store}>
+
         <NavigationProvider context={navigationContext}>
+
+          <StatusBar hidden={true} />
           <StackNavigation
             navigatorUID='root'
             initialRoute={Router.getRoute('home')}
             defaultRouteConfig={{
               navigationBar: {
-                ...TabNavigation.navigationBarStyles,
+                ...SlidingTabNavigation.navigationBarStyles,
               }
             }}
             />
-          {/* <Home /> */}
         </NavigationProvider>
       </Provider>
     )
