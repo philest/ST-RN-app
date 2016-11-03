@@ -2,32 +2,19 @@
 import React,{ Component } from 'react'
 import { View, StyleSheet, StatusBar }from 'react-native'
 import { Provider }        from 'react-redux'
-import FCM from 'react-native-fcm'
-
-
-
-import {
-  NavigationContext,
-  NavigationProvider,
-  StackNavigation,
-  SlidingTabNavigation
-} from '@exponent/ex-navigation';
-
 
 // connect to firebase!
-import * as Firebase from 'firebase';
-// Initialize Firebase
+import * as Firebase from 'firebase'
 const firebaseConfig = {
   apiKey: "AIzaSyDQkgcxSMXHlGbTcZY7KkTGLZhekvTcyHY",
   authDomain: "storytime-e2537.firebaseapp.com",
   databaseURL: "https://storytime-e2537.firebaseio.com"
-};
+}
 Firebase.initializeApp(firebaseConfig);
-
-import PushController from './PushController'
 
 
 // turn regular ol' redux store into a navigator-aware store
+import { NavigationContext } from '@exponent/ex-navigation'
 import Store from './createStore'
 import Router from './router.js'
 
@@ -36,7 +23,18 @@ const navigationContext = new NavigationContext({
   store: Store,
 })
 
+
+// import our lovely components
+import PushController from './components/pushController'
+import {
+  NavigationProvider,
+  StackNavigation,
+  SlidingTabNavigation
+} from '@exponent/ex-navigation'
+
+
 export default class App extends Component {
+
   constructor(props) {
     super(props);
     // TODO: unload this onto the store...
@@ -44,17 +42,14 @@ export default class App extends Component {
       token: ""
     }
   }
+
   render () {
     return (
       // <Login />
       <Provider store={Store}>
-
         <NavigationProvider context={navigationContext}>
-
           <StatusBar hidden={true} />
-          <PushController
-            onChangeToken={token => this.setState({token: token || ""})}
-          />
+          <PushController />
           <StackNavigation
             navigatorUID='root'
             initialRoute={Router.getRoute('home')}
@@ -63,7 +58,7 @@ export default class App extends Component {
                 ...SlidingTabNavigation.navigationBarStyles,
               }
             }}
-            />
+          />
         </NavigationProvider>
       </Provider>
     )

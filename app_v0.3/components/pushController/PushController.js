@@ -6,6 +6,7 @@ export default class FirebaseClient extends Component {
   constructor(props) {
     super(props);
   }
+  
   componentDidMount() {
     FCM.requestPermissions(); // for IOS
 
@@ -39,10 +40,13 @@ export default class FirebaseClient extends Component {
           show_in_foreground: true,
           local: true
         })
-
     });
+
+    // TODO: how does this actually work???
     this.refreshUnsubscribe = FCM.on('refreshToken', (token) => {
+        console.log('TOKEN CHANGED IN REFRESH??');
         console.log(token)
+        this.props.onChangeToken(token);
         // fcm token may not be available on first load, catch it here
     });
   }
