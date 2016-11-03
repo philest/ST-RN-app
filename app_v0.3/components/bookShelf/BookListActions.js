@@ -15,10 +15,12 @@ export const itemMarkRead = (index) => ({
   index,
 })
 
+
 // makes book at the top of the curriculum stack available
-export const itemReveal = () => ({
+// TODO: unit test the heck out of this
+export const itemReveal = (time = 0) => ({
   type: ITEM_REVEAL,
-  time: Date.now()
+  time: time || Date.now()
 })
 
 export const updateLastTimeRead = (index) => ({

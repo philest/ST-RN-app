@@ -6,12 +6,8 @@ import {
   Image
 } from 'react-native'
 import { connect } from 'react-redux'
-
 import { Button, Icon } from 'native-base'
-
 import Router from '../../router'
-
-
 
 class SplashPage extends Component {
 
@@ -33,6 +29,15 @@ class SplashPage extends Component {
             onPress={()=> this.props.onReadItClick(this.props.storyIndex)}>
             Read it!
           </Button>
+
+          {/* <Button
+            success
+            large
+            iconRight
+            style={{alignSelf:'center'}}
+            onPress={()=> this.props.resetStack() }>
+            reset
+          </Button> */}
 
           <View style={{flexDirection:'row', padding:10, width:300}}>
             <View style={{flex:1, flexDirection:'column', justifyContent:'flex-end', paddingRight:20}}>
@@ -70,6 +75,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(batchActions([
       updateLastTimeRead(index),
       NavigationActions.push('root', Router.getRoute('reader'))
+    ]))
+  },
+  resetStack () {
+    dispatch(batchActions([
+      NavigationActions.popToTop('root'),
+      NavigationActions.popToTop('home') // reset tabs :)
     ]))
   }
 })

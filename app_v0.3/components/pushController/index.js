@@ -29,12 +29,14 @@ const initialState = {
 const mapStateToProps = (state) => ({
   // currently selected book
   fcmToken: state.firebaseInfo.fcmToken,
+  state
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeToken (token) {
     dispatch(updateFCMToken(token))
-  }
+  },
+  dispatch
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PushController)

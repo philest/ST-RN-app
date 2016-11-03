@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 
+import handleNotification from './notificationHandler'
+
 import FCM from 'react-native-fcm'
 
 export default class FirebaseClient extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   componentDidMount() {
     FCM.requestPermissions(); // for IOS
 
@@ -22,13 +24,17 @@ export default class FirebaseClient extends Component {
     });
 
     this.notificationUnsubscribe = FCM.on('notification', (notif) => {
+
+
+
         // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
-        console.log(notif);
-        if(notif.local_notification){
-          return;
-        }
         if(notif.opened_from_tray){
-          //app is open/resumed because user clicked banner
+          console.log('we opened the tray!!!!')
+          handleNotification(this.props.dispatch, this.props.state, notif)
+        }
+
+        if(notif.local_notification){
+          return
         }
 
         FCM.presentLocalNotification({
@@ -38,8 +44,12 @@ export default class FirebaseClient extends Component {
           priority: "high",
           click_action: notif.click_action,
           show_in_foreground: true,
-          local: true
+          story_time_action: notif.story_time_action,
+          ...notif
         })
+
+        console.log(notif)
+
     });
 
     // TODO: how does this actually work???

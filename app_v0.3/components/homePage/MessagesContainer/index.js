@@ -3,9 +3,9 @@ import {
   View,
   Text,
 } from 'react-native';
-
+import BookShelf from '../../bookShelf'
 export default MessagesContainer = () => (
-  <View>
-    <Text>Messages!!!</Text>
+  <View style={{flex:1}}>
+    <Text>Messages!!!!!</Text>
   </View>
 )
