@@ -30,24 +30,19 @@ export default class ActionButton extends Component {
 
 
   componentWillReceiveProps (nextProps) {
+
     this.animateButton()
 
     if (this.state.active != this.props.active) {
-
-
-      if ( nextProps.active != this.props.active ) {
+      if ( nextProps.active != this.props.active )
         this.setState({active: !this.state.nextProps})
-      } else {
+      else
         this.setState({active: this.state.nextProps})
-      }
     } else {
       this.setState({active:nextProps.active})
     }
 
-
-
-
-
+    this.animateButton()
 
   }
 
