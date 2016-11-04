@@ -2,25 +2,37 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 import {
   StackNavigation,
   SlidingTabNavigation,
-  SlidingTabNavigationItem
+  SlidingTabNavigationItem,
+  NavigationActions
 } from '@exponent/ex-navigation';
 
+import { connect } from 'react-redux'
+
+import ActionMenu from './ActionMenu'
 
 import Router from '../../router'
 import Reader from './BookShelfContainer'
 import Messages from './MessagesContainer'
 
-export default class TabNavigationExample extends Component {
+class HomePage extends Component {
   static route = {
     navigationBar: {
       title: 'StoryTime',
        ...SlidingTabNavigation.navigationBarStyles,
     },
+  }
+
+  _shortPress = (key) => {
+    this.props.navigation.performAction
+
+    getNavigatorByUID('root').jumpToTab(key)
+    return NavigationActions.jumpToTab('home',key)
   }
 
   _renderLabel = ({route}) => {
@@ -32,7 +44,18 @@ export default class TabNavigationExample extends Component {
     } else if (route.key === 'poop') {
       title = 'Poop'
     }
-    return <Text style={styles.tabLabel}>{title.toUpperCase()}</Text>;
+
+    const key =route.key
+
+    return <TouchableOpacity onLongPress={ this.props._toggleDevMenu }
+      onPress={() => {
+        this.props.navigation.performAction(({ tabs, stacks }) => {
+          tabs('home').jumpToTab(route.key);
+        });
+      }}
+     >
+      <Text style={styles.tabLabel}>{title.toUpperCase()}</Text>
+    </TouchableOpacity>
   };
 
   render () {
@@ -53,12 +76,30 @@ export default class TabNavigationExample extends Component {
           <SlidingTabNavigationItem id="messages">
             <Messages />
           </SlidingTabNavigationItem>
+
         </SlidingTabNavigation>
 
 
     )
   }
 }
+
+
+import { toggleDevMenu } from '../devButtons'
+
+const mapStateToProps = (state) => ({
+  state
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  _toggleDevMenu: ()=> {
+    dispatch(toggleDevMenu())
+  }
+})
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(HomePage)
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -29,7 +29,7 @@ const initialState = {
 const mapStateToProps = (state) => ({
   // currently selected book
   fcmToken: state.firebaseInfo.fcmToken,
-  state
+  state // TODO: uhhhh....
 })
 
 const mapDispatchToProps = (dispatch) => ({

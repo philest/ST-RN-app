@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import BookShelf from '../../bookShelf'
 import SikButts from '../../devButtons'
 import {

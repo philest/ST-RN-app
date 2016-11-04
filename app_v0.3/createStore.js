@@ -11,12 +11,14 @@ const createStoreWithNavigation = createNavigationEnabledStore({
 import bookShelf from './components/bookShelf/BookShelfReducer'
 import bookList from './components/bookShelf/BookListReducer'
 import { firebaseInfoReducer } from './components/pushController'
+import { devReducer } from './components/devButtons'
 
 const rootReducer = combineReducers({
   navigation: NavigationReducer,
   bookShelf,
   bookList,
-  firebaseInfo: firebaseInfoReducer
+  firebaseInfo: firebaseInfoReducer,
+  devMenu: devReducer,
 })
 
 const store = createStoreWithNavigation(

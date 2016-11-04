@@ -29,6 +29,7 @@ export default class Home extends Component {
           id="home"
           title="Home"
           renderIcon={(isSelected) => <Icon name='md-home' size={32} color='blue' /> }>
+          
           <View>
             <Text>
               we home
