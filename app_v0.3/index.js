@@ -52,10 +52,10 @@ export default class App extends Component {
           <PushController />
           <StackNavigation
             navigatorUID='root'
-            initialRoute={Router.getRoute('home')}
+            initialRoute={Router.getRoute('messages')}
             defaultRouteConfig={{
               navigationBar: {
-                ...SlidingTabNavigation.navigationBarStyles,
+                backgroundColor: '#fff'
               }
             }}
           />

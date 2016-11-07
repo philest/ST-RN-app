@@ -1,6 +1,5 @@
 import { createRouter } from '@exponent/ex-navigation';
 
-import Homes from './Homes'
 import HomePage from './components/homePage';
 import SplashPage from './components/splashPage'
 import Reader from './components/readerPage'
