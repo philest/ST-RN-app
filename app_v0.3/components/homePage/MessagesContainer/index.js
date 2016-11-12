@@ -3,8 +3,19 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  TextInput,
+  Keyboard,
+  UIManager,
+  LayoutAnimation,
+  Dimensions
 } from 'react-native';
+
+
+UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
+
+
+import STChat from '../../chat'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
@@ -18,7 +29,7 @@ class LibraryButton extends Component {
   render () {return(
     <View style={[styles.center, {}]}>
       <TouchableOpacity onPress={()=>this.props.dispatch(NavigationActions.push('root', Router.getRoute('read')))}>
-        <Icon style={{paddingRight:20}} name='md-apps' size={40}/>
+        <Icon style={{paddingLeft:20}} name='md-apps' size={40}/>
       </TouchableOpacity>
     </View>
   )}
@@ -31,7 +42,7 @@ class InfoButton extends Component {
       <TouchableOpacity
         // onPress={()=>this.props.dispatch(NavigationActions.push('root', Router.getRoute('read')))}
         >
-        <Icon style={{alignSelf:'center', paddingLeft:20}} name='md-information-circle' size={40}/>
+        <Icon style={{alignSelf:'center', paddingRight:20}} name='md-information-circle' size={40}/>
       </TouchableOpacity>
     </View>
   )}
@@ -63,17 +74,14 @@ export default class MessagesContainer extends Component {
     },
     navigationBar: {
       renderTitle: ()=> <TitleText />,
-      renderLeft: ()=> <InfoButton />,
-      renderRight: ()=> <LibraryButton />
+      renderLeft: ()=> <LibraryButton />,
+      renderRight: ()=> <InfoButton />,
     },
   }
 
-
-  render () {
+  render() {
     return (
-      <View style={{flex:1}}>
-        <Text>Messages!!!!!</Text>
-      </View>
+      <STChat />
     )
   }
 }

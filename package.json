@@ -15,7 +15,7 @@
     "react": "15.3.2",
     "react-addons-shallow-compare": "^15.3.2",
     "react-mixin": "^3.0.5",
-    "react-native": "^0.36.0",
+    "react-native": "^0.37.0",
     "react-native-action-button": "^2.0.13",
     "react-native-config": "^0.1.0",
     "react-native-elements": "^0.5.4",
