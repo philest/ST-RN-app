@@ -33,15 +33,15 @@ import {
 } from '@exponent/ex-navigation'
 
 
-const NAVBAR_HEIGHT = 85
+const MAGIC_NUMBER = 2 // lol. RN 0.27 with ex-navigation 2.0.0
 
 export default class App extends Component {
 
   constructor(props) {
     super(props);
     // TODO: unload this onto the store...
-    this._keyboardDidShow = this._keyboardDidShow.bind(this)
-    this._keyboardDidHide = this._keyboardDidHide.bind(this)
+    this._keyboardWillShow = this._keyboardWillShow.bind(this)
+    this._keyboardWillHide = this._keyboardWillHide.bind(this)
     this.state = {
       token: "",
       visibleHeight: Dimensions.get('window').height,
@@ -50,26 +50,26 @@ export default class App extends Component {
   }
 
   componentWillMount () {
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
+    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this._keyboardWillShow);
+    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this._keyboardWillHide);
   }
 
   componentWillUnmount () {
-    this.keyboardDidShowListener.remove();
-    this.keyboardDidHideListener.remove();
+    this.keyboardWillShowListener.remove();
+    this.keyboardWillHideListener.remove();
   }
 
-  _keyboardDidShow (e) {
+  _keyboardWillShow (e) {
    // Animation types easeInEaseOut/linear/spring
 
     let visibleHeight = Dimensions.get('window').height - e.endCoordinates.height
     this.setState({
       visibleHeight: visibleHeight,
-      pad: e.endCoordinates.height -2
+      pad: e.endCoordinates.height - MAGIC_NUMBER
     })
   }
 
-  _keyboardDidHide (e) {
+  _keyboardWillHide (e) {
     // Animation types easeInEaseOut/linear/spring
 
     this.setState({
@@ -88,7 +88,7 @@ export default class App extends Component {
             <View style={{flex:1, height:this.state.visibleHeight, paddingTop:this.state.pad}}>
               <StackNavigation
                 navigatorUID='root'
-                initialRoute={Router.getRoute('messages')}
+                initialRoute={Router.getRoute('test')}
                 defaultRouteConfig={{
                   navigationBar: {
                     backgroundColor: '#fff'
@@ -96,7 +96,6 @@ export default class App extends Component {
                 }}
               />
             </View>
-
         </NavigationProvider>
       </Provider>
     )

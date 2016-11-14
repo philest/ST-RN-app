@@ -40,7 +40,7 @@ class InfoButton extends Component {
   render () {return(
     <View style={[styles.center, {}]}>
       <TouchableOpacity
-        // onPress={()=>this.props.dispatch(NavigationActions.push('root', Router.getRoute('read')))}
+        onPress={()=>this.props.dispatch(NavigationActions.push('root', Router.getRoute('test')))}
         >
         <Icon style={{alignSelf:'center', paddingRight:20}} name='md-information-circle' size={40}/>
       </TouchableOpacity>

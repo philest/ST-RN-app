@@ -5,7 +5,7 @@ import SplashPage from './components/splashPage'
 import Reader from './components/readerPage'
 import BookShelf from './components/homePage/BookShelfContainer'
 import Messages  from './components/homePage/MessagesContainer'
-
+import Test from './test'
 
 import {
   View,
@@ -17,5 +17,6 @@ export default Router = createRouter(() => ({
   read: () => BookShelf,
   messages: () => Messages,
   splash: () => SplashPage,
-  reader: () => Reader
+  reader: () => Reader,
+  test: () => Test
 }));
