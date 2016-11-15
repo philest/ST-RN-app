@@ -31,7 +31,7 @@ export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, custom
 const styles = StyleSheet.create({
   rowContainer: {
     flexDirection:'column',
-    marginBottom: 20,
+    marginBottom: 40,
     // borderWidth:2,
     // borderColor:'red',
   },
