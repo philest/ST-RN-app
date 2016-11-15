@@ -8,7 +8,8 @@ import {
   ListView,
   TouchableOpacity,
   Modal,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  StatusBar
 } from 'react-native'
 
 
@@ -34,8 +35,10 @@ export default class STSwiper extends Component {
   _renderPages (pages) {
     return pages.map((url, i) => {
       return (
+
         <TouchableWithoutFeedback key={i} onPress={ this._toggleNav }>
           <View  style={ styles.container } >
+            <StatusBar hidden={true} />
             <View style={ styles.imgWrapper }>
               <Image
                 source         = {{uri: url}}

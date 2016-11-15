@@ -15,7 +15,7 @@ import {
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
 
 
-import STChat from '../../chat'
+import STChat from '../../chat/chat'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
@@ -28,7 +28,10 @@ import Router from '../../../router'
 class LibraryButton extends Component {
   render () {return(
     <View style={[styles.center, {}]}>
-      <TouchableOpacity onPress={()=>this.props.dispatch(NavigationActions.push('root', Router.getRoute('read')))}>
+      <TouchableOpacity onPress={()=>{
+        Keyboard.dismiss()
+        this.props.dispatch(NavigationActions.push('root', Router.getRoute('read')))
+      }}>
         <Icon style={{paddingLeft:20}} name='md-apps' size={40}/>
       </TouchableOpacity>
     </View>
@@ -78,6 +81,7 @@ export default class MessagesContainer extends Component {
       renderRight: ()=> <InfoButton />,
     },
   }
+
 
   render() {
     return (
