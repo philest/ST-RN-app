@@ -115,7 +115,7 @@ const initialState = [
       description: "A story about where you'lll go after you fall asleep",
       offset:0,
       numPages: 8,
-      timeRevealedAt: 0,
+      timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
       thumbnail: cook,

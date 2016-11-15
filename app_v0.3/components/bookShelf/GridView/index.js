@@ -3,7 +3,7 @@ import {
   StyleSheet, View, Dimensions
 } from 'react-native'
 
-import GridView from 'react-native-grid-view'
+import GridView from './GridView'
 import GridItem from './GridItem'
 
 const { width, height } = Dimensions.get('window')
