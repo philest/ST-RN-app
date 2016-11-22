@@ -13,7 +13,7 @@ const firebaseConfig = {
 Firebase.initializeApp(firebaseConfig);
 
 
-// turn regular ol' redux store into a navigator-aware store
+// turn regular ol' redux store into an ex-navigaton-aware store
 import { NavigationContext } from '@exponent/ex-navigation'
 import Store from './createStore'
 import Router from './router.js'
@@ -33,8 +33,6 @@ import {
 } from '@exponent/ex-navigation'
 
 
-const NAVBAR_HEIGHT = 85
-const MAGIC_NUMBER  = 2
 export default class App extends Component {
 
   constructor(props) {
@@ -44,13 +42,11 @@ export default class App extends Component {
     this._keyboardDidHide = this._keyboardDidHide.bind(this)
     this.state = {
       token: "",
-      visibleHeight: Dimensions.get('window').height,
-      pad: 0
+      visibleHeight: Dimensions.get('window').height
     }
   }
 
   componentWillMount () {
-
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
   }
@@ -68,7 +64,6 @@ export default class App extends Component {
     let visibleHeight = Dimensions.get('window').height - e.endCoordinates.height
     this.setState({
       visibleHeight: visibleHeight,
-      pad: e.endCoordinates.height - MAGIC_NUMBER
     })
   }
 
@@ -77,7 +72,6 @@ export default class App extends Component {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
     this.setState({
       visibleHeight: Dimensions.get('window').height,
-      pad: 0
     })
   }
 
@@ -100,7 +94,6 @@ export default class App extends Component {
                 }}
               />
             </View>
-
         </NavigationProvider>
       </Provider>
     )

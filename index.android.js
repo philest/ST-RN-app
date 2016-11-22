@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { AppRegistry, } from 'react-native'
 
-import Src from './app_v0.3'
+import Src from 'app'
 
 class App extends Component {
   render () {
