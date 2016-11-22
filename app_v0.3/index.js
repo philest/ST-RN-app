@@ -92,7 +92,7 @@ export default class App extends Component {
             <View style={{flex:1, maxHeight:this.state.visibleHeight}}>
               <StackNavigation
                 navigatorUID='root'
-                initialRoute={Router.getRoute('read')}
+                initialRoute={Router.getRoute('messages')}
                 defaultRouteConfig={{
                   navigationBar: {
                     backgroundColor: '#fff'
