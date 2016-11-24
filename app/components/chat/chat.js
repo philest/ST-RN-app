@@ -16,23 +16,9 @@ import CustomView from './CustomView'
 import CustomBubble from './CustomBubble'
 import CustomDay from './CustomDay'
 
-const button = (text) => (
-  <TouchableOpacity>
-    <View><Text style={{fontSize:35}}> {text} </Text></View>
-  </TouchableOpacity>
-)
 
 
 export default class Example extends React.Component {
-  static route = {
-    navigationBar: {
-      title: 'Chat Screen Title',
-      renderRight: () => button('right'),
-      renderLeft: () => button('left')
-
-    }
-  }
-
 
   constructor(props) {
     super(props);
@@ -218,7 +204,7 @@ export default class Example extends React.Component {
       <View style={{flex:1}}>
         <StatusBar />
         <GiftedChat
-
+        // style={{flex:1, backgroundColor:'red'}}
         messages={this.state.messages}
         onSend={this.onSend}
         loadEarlier={this.state.loadEarlier}

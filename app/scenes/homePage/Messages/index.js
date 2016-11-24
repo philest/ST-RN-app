@@ -15,14 +15,14 @@ import {
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
 
 
-import STChat from '../../chat/chat'
+import STChat from 'app/components/chat/chat'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 
 import { NavigationActions, NavigationStyles } from '@exponent/ex-navigation'
 
-import Router from '../../../router'
+import Router from 'app/router'
 
 @connect()
 class LibraryButton extends Component {
@@ -69,17 +69,22 @@ class TitleText extends Component {
   )}
 }
 
+const button = (text) => (
+  <TouchableOpacity>
+    <View><Text style={{fontSize:35}}> {text} </Text></View>
+  </TouchableOpacity>
+)
+
+
 export default class MessagesContainer extends Component {
 
   static route = {
-    styles: {
-
-    },
     navigationBar: {
-      renderTitle: ()=> <TitleText />,
-      renderLeft: ()=> <LibraryButton />,
-      renderRight: ()=> <InfoButton />,
-    },
+      title: 'Chat Screen Title',
+      renderRight: () => button('right'),
+      renderLeft: () => button('left')
+
+    }
   }
 
 

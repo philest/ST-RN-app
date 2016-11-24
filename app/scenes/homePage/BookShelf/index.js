@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import BookShelf from '../../bookShelf'
-import SikButts from '../../devButtons'
+import BookShelf from 'app/components/bookShelf'
+import SikButts from 'app/components/devButtons'
 import {
   View,
+  Text,
   TouchableOpacity
 } from 'react-native'
 
@@ -18,6 +19,7 @@ class BackToMessages extends Component {
   )}
 }
 
+import BookShelfHeader from './BookShelfHeader'
 
 
 import { NavigationActions, NavigationStyles } from '@exponent/ex-navigation'
@@ -29,16 +31,15 @@ export default class BookShelfContainer extends Component {
     },
     navigationBar: {
       title: 'Books',
-      // renderRight: () => <BackToMessages />
     },
   }
-
 
   render () {
     return (
       <View style={{flex:1}}>
         <BookShelf />
         <SikButts style={{position:'absolute'}}/>
+        {/* <BookShelfHeader style={{position:'absolute', top:0, left: 0, right:0}}/> */}
       </View>
     )
   }

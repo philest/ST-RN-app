@@ -3,7 +3,7 @@ import { StyleSheet }  from 'react-native'
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
-import { itemReveal, resetLibrary } from '../../bookShelf/BookListActions'
+import { itemReveal, resetLibrary } from 'app/components/bookShelf/BookListActions'
 
 const ActionMenu = ({dispatch}) => (
   <ActionButton buttonColor="grey" verticalOrientation='down' position="right" hideShadow={true} spacing={10} offsetY={0} offsetX={20}>

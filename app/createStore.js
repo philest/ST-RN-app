@@ -13,7 +13,12 @@ import bookList from './components/bookShelf/BookListReducer'
 import { firebaseInfoReducer } from './components/pushController'
 import { devReducer } from './components/devButtons'
 
+
+import scenesReducer from 'app/scenes/reducer'
+
+
 const rootReducer = combineReducers({
+  scenes: scenesReducer,
   navigation: NavigationReducer,
   bookShelf,
   bookList,
