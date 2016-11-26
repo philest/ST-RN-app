@@ -14,8 +14,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 
-import STChat from 'app/components/chat/chat'
-import Router from 'app/router'
+import STChat from './chat'
 
 export default class MessagesContainer extends Component {
   render () { return  <STChat/> }

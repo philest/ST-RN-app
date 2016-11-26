@@ -25,7 +25,7 @@ const navigationContext = new NavigationContext({
 
 
 // import our lovely components
-import PushController from './components/pushController'
+import PushController from './data/pushController'
 import {
   NavigationProvider,
   StackNavigation,

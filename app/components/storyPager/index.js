@@ -7,21 +7,20 @@ import {
   Dimensions,
   ListView,
   TouchableOpacity,
-  Modal,
   TouchableWithoutFeedback,
   StatusBar
 } from 'react-native'
+import { connect } from 'react-redux'
+import _ from 'lodash' // TODO: get this outta here?
 
-
-
-import BackBar from './BackNav'
 
 import Swiper from 'react-native-swiper'
 import Image from 'react-native-image-progress'
+import BackBar from './BackNav'
 
-var { height, width } = Dimensions.get('window');
+var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
 
-export default class STSwiper extends Component {
+ class StoryPager extends Component {
 
   constructor (props) {
     super(props)
@@ -35,7 +34,6 @@ export default class STSwiper extends Component {
   _renderPages (pages) {
     return pages.map((url, i) => {
       return (
-
         <TouchableWithoutFeedback key={i} onPress={ this._toggleNav }>
           <View  style={ styles.container } >
             <StatusBar hidden={true} />
@@ -51,13 +49,11 @@ export default class STSwiper extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
-
-    )
+      )
     })
   }
 
   _toggleNav () {
-    // console.log(this.state.hideNavBar);
     this.setState({
       hideNavBar: !this.state.hideNavBar
     })
@@ -79,9 +75,7 @@ export default class STSwiper extends Component {
           { this._renderPages( info.pagesToRender ) }
         </Swiper>
         <BackBar hideNavBar={this.state.hideNavBar} text={ info.title } onPress={this.props.backAction}/>
-
       </View>
-
     )
   }
 }
@@ -105,3 +99,27 @@ const styles = StyleSheet.create({
     backgroundColor:'black'
   },
 })
+
+const storyInfo = (book, storyIndex) => {
+
+  if (!book) return {}
+
+  const numPages = book.numPages
+  const offset   = book.offset
+  const awsKey   = book.awsKey
+  const pagesToRender = _.times(numPages-offset, (i) => `https://s3.amazonaws.com/st-messenger/day1/${awsKey}/${awsKey}${i+1+offset}.jpg`)
+
+  const storyInfo = {
+    title: book.title,
+    description: book.description,
+    pagesToRender: pagesToRender
+  }
+
+  return storyInfo
+}
+
+const mapStateToProps = (state) => ({
+  storyInfo: storyInfo(state.bookList[state.bookShelf.currentStoryIndex], state.bookShelf.currentStoryIndex)
+})
+
+export default connect(mapStateToProps)(StoryPager)

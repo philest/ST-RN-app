@@ -33,7 +33,7 @@ const initialState = {
   devMenuIsOpen: false
 }
 
-import { updateObject } from '../../reducerUtils'
+import { updateObject } from 'app/reducerUtils'
 export const devReducer = (state=initialState, action) => {
   switch (action.type) {
     case TOGGLE_DEV_MENU:

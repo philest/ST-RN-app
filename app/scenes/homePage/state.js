@@ -7,6 +7,9 @@ export const setHomePageIndex = (index) => ({
   index
 })
 
+// the purpose of this action is to allow the static navbar to access
+// the ViewPager, which is how we flip between the chat and library pages.
+// obvs this is bit convoluted, but it is unfortunately how ex-navigation works
 export const setPagerRef = (pagerRef) => ({
   type: SET_PAGER_REF,
   pagerRef

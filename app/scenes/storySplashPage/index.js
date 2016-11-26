@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Button, Icon } from 'native-base'
-import Router from '../../router'
+import Router from 'app/router'
 
 class SplashPage extends Component {
 
@@ -51,18 +51,14 @@ class SplashPage extends Component {
           </View>
       </View>
     )
-
   }
 }
 
 
-
-
-
 import { batchActions } from 'redux-batched-actions'
-import { updateLastTimeRead } from '../bookShelf/BookListActions'
-import { setCurrentStoryIndex } from '../bookShelf/BookShelfReducer'
 import { NavigationActions } from '@exponent/ex-navigation'
+import { updateLastTimeRead } from 'app/components/bookShelf/BookListActions'
+import { setCurrentStoryIndex } from 'app/components/bookShelf/BookShelfReducer'
 
 const mapStateToProps = (state) => ({
   // currently selected book
@@ -74,19 +70,17 @@ const mapDispatchToProps = (dispatch) => ({
   onReadItClick (index) {
     dispatch(batchActions([
       updateLastTimeRead(index),
-      NavigationActions.push('root', Router.getRoute('reader'))
+      NavigationActions.push('root', Router.getRoute('storyReader'))
     ]))
   },
   resetStack () {
     dispatch(batchActions([
       NavigationActions.popToTop('root'),
-      NavigationActions.popToTop('home') // reset tabs :)
     ]))
   }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplashPage)
-
 
 const styles = StyleSheet.create({
   container: {
@@ -95,7 +89,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10
   },
-
   text: {
     fontSize:20
   }

@@ -1,10 +1,10 @@
 import { batchActions } from 'redux-batched-actions'
 
-import { itemReveal, itemMarkRead } from '../bookShelf/BookListActions'
-import { setCurrentStoryIndex } from '../bookShelf/BookShelfReducer'
+import { itemReveal, itemMarkRead } from 'app/components/bookShelf/BookListActions'
+import { setCurrentStoryIndex } from 'app/components/bookShelf/BookShelfReducer'
 import { NavigationActions } from '@exponent/ex-navigation'
 
-import Router                from '../../router'
+import Router                from 'app/router'
 
 
 export const NEW_BOOK = 'NEW_BOOK'

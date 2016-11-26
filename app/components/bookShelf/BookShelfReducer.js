@@ -16,7 +16,7 @@ export const setCurrentStoryIndex = (index) => ({
   index,
 })
 
-import { updateObject, updateItemInArray } from '../../reducerUtils'
+import { updateObject, updateItemInArray } from 'app/reducerUtils'
 
 export default readerState = (state = initialState, action) => {
   switch (action.type) {

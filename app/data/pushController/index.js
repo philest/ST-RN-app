@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import PushController from './PushController'
-import { updateObject } from '../../reducerUtils'
+import { updateObject } from 'app/reducerUtils'
 
 export const UPDATE_FCM_TOKEN = 'UPDATE_FCM_TOKEN'
 

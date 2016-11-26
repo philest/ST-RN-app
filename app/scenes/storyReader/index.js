@@ -7,14 +7,13 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { NavigationStyles } from '@exponent/ex-navigation';
-
-import ReaderModal from '../readerModal'
-
 import reactMixin from 'react-mixin'
 import TimerMixin from 'react-timer-mixin';
 
 import { NavigationActions } from '@exponent/ex-navigation'
+import { NavigationStyles } from '@exponent/ex-navigation';
+
+import ReaderModal from 'app/components/storyPager'
 
 class ReaderContainer extends Component {
   static route = {
@@ -45,10 +44,10 @@ class ReaderContainer extends Component {
       <ReaderModal backAction={()=>this.props.dispatch(NavigationActions.pop('root'))}/>
       {/* <StatusBar hidden={this.state.statusBarHide} /> */}
     </View>
-
   }
 }
 
-reactMixin(ReaderContainer.prototype, TimerMixin)
+// the purpose of this timer is to ensure a smooth transition when hiding statusbar
+reactMixin( ReaderContainer.prototype, TimerMixin )
 
 export default connect()(ReaderContainer)

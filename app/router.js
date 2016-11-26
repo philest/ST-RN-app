@@ -1,13 +1,8 @@
 import { createRouter } from '@exponent/ex-navigation';
 
-
 import HomePage   from 'app/scenes/homePage';
-
-
-// import SplashPage from 'app/components/splashPage'
-// import Reader     from 'app/components/readerPage'
-// import BookShelf  from 'app/components/homePage/BookShelfContainer'
-// import Messages   from 'app/components/homePage/MessagesContainer'
+import StorySplashPage from 'app/scenes/storySplashPage'
+import StoryReader     from 'app/scenes/storyReader'
 
 import {
   View,
@@ -16,4 +11,6 @@ import {
 
 export default Router = createRouter(() => ({
   home: () => HomePage,
+  storySplashPage: () => StorySplashPage,
+  storyReader: () => StoryReader
 }));
