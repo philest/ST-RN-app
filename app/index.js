@@ -25,7 +25,7 @@ const navigationContext = new NavigationContext({
 
 
 // import our lovely components
-import PushController from './data/pushController'
+import PushController from './services/pushController'
 import {
   NavigationProvider,
   StackNavigation,
@@ -92,6 +92,8 @@ export default class App extends Component {
                     backgroundColor: '#fff'
                   }
                 }}
+                // onTransitionStart={()=>alert('yo')} //TODO connect this up to store! also, alias the navigator push... maybe?
+                // onTransitionEnd={()=>alert('done')}
               />
             </View>
         </NavigationProvider>

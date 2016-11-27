@@ -8,20 +8,18 @@ const createStoreWithNavigation = createNavigationEnabledStore({
   navigationStateKey: 'navigation',
 });
 
-import bookShelf from 'app/components/bookShelf/BookShelfReducer'
-import bookList from 'app/components/bookShelf/BookListReducer'
-import { firebaseInfoReducer } from 'app/data/pushController'
-import { devReducer } from 'app/components/devButtons'
 
+import componentsReducer       from 'app/components/reducer'
+import scenesReducer           from 'app/scenes/reducer'
+import dataReducer             from 'app/data/reducer'
 
-import scenesReducer from 'app/scenes/reducer'
-
+import { firebaseInfoReducer } from 'app/services/pushController'
 
 const rootReducer = combineReducers({
+  components: componentsReducer,
   scenes: scenesReducer,
+  data: dataReducer,
   navigation: NavigationReducer,
-  bookShelf,
-  bookList,
   firebaseInfo: firebaseInfoReducer,
 })
 

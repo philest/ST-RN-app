@@ -57,19 +57,19 @@ class SplashPage extends Component {
 
 import { batchActions } from 'redux-batched-actions'
 import { NavigationActions } from '@exponent/ex-navigation'
-import { updateLastTimeRead } from 'app/components/bookShelf/BookListActions'
-import { setCurrentStoryIndex } from 'app/components/bookShelf/BookShelfReducer'
+import { itemUpdateLastTimeRead } from 'app/data/user/bookList/bookListActions'
+import { setCurrentStoryIndex } from 'app/components/bookShelf/state'
 
 const mapStateToProps = (state) => ({
   // currently selected book
-  storyIndex: state.bookShelf.currentStoryIndex,
-  book: state.bookList[state.bookShelf.currentStoryIndex]
+  storyIndex: state.components.bookShelf.currentStoryIndex,
+  book: state.data.user.bookList[state.components.bookShelf.currentStoryIndex]
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onReadItClick (index) {
     dispatch(batchActions([
-      updateLastTimeRead(index),
+      itemUpdateLastTimeRead(index),
       NavigationActions.push('root', Router.getRoute('storyReader'))
     ]))
   },

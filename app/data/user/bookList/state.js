@@ -1,4 +1,4 @@
-import { ITEM_REVEAL, ITEM_MARK_READ, OPEN_READER, RESET_LIBRARY } from './BookListActions'
+import { ITEM_REVEAL, ITEM_MARK_READ, ITEM_UPDATE_LAST_TIME_OPENED, RESET_LIBRARY } from './bookListActions'
 import { updateObject, updateItemInArray } from 'app/reducerUtils'
 
 const bookListItem = (state, action) => {
@@ -7,13 +7,12 @@ const bookListItem = (state, action) => {
       return updateObject(state, {timeRevealedAt: action.time})
     case ITEM_MARK_READ:
       return updateObject(state, {timeFirstRead: action.time})
-    case OPEN_READER:
+    case ITEM_UPDATE_LAST_TIME_OPENED:
       return updateObject(state, {timeLastOpened: action.time})
     default:
       return state
   } // END switch...
 } // END const bookListItem...
-
 
 
 const bookList = (state = initialState, action) => {
@@ -44,7 +43,7 @@ const bookList = (state = initialState, action) => {
       }
       return state
 
-    case OPEN_READER:
+    case ITEM_UPDATE_LAST_TIME_OPENED:
       return [
         ...state.slice(0,action.index),
         bookListItem(state[action.index], action),

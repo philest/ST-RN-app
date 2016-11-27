@@ -3,7 +3,7 @@ import { StyleSheet }  from 'react-native'
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
-import { itemReveal, resetLibrary } from '../bookShelf/BookListActions'
+import { itemReveal, resetLibrary } from 'app/data/user/bookList/bookListActions'
 
 const CoolButtons = ({dispatch, active}) => (
   <ActionButton  active={active} buttonColor="rgba(231,76,60,1)" position="left"  spacing={5} offsetY={-80} offsetX={10}>

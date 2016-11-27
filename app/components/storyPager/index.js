@@ -119,7 +119,7 @@ const storyInfo = (book, storyIndex) => {
 }
 
 const mapStateToProps = (state) => ({
-  storyInfo: storyInfo(state.bookList[state.bookShelf.currentStoryIndex], state.bookShelf.currentStoryIndex)
+  storyInfo: storyInfo(state.data.user.bookList[state.components.bookShelf.currentStoryIndex], state.components.bookShelf.currentStoryIndex)
 })
 
 export default connect(mapStateToProps)(StoryPager)

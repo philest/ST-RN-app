@@ -1,7 +1,7 @@
 /* regular actions */
-export const SET_GRID_VIEW   = 'SET_GRID_VIEW'
-export const SET_LIST_VIEW   = 'SET_LIST_VIEW'
-export const SET_CURRENT_STORY = 'SET_CURRENT_STORY'
+export const SET_GRID_VIEW     = 'components/bookShelf/SET_GRID_VIEW'
+export const SET_LIST_VIEW     = 'components/bookShelf/SET_LIST_VIEW'
+export const SET_CURRENT_STORY = 'components/bookShelf/SET_CURRENT_STORY'
 
 export const setGridView = () => ({
   type: SET_GRID_VIEW,

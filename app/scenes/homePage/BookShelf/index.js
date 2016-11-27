@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 
 import BookShelf from 'app/components/bookShelf'
-import BookShelfHeader from './BookShelfHeader'
+// import BookShelfHeader from './BookShelfHeader'
 
 export default class BookShelfContainer extends Component {
   render () {
