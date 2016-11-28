@@ -8,9 +8,37 @@ import {
   Image
 } from 'react-native'
 
-import { Bubble, Time } from 'react-native-gifted-chat';
+import STText from 'app/components/STText'
+
+import { Bubble, Time, GiftedAvatar } from 'react-native-gifted-chat';
 
 export default class CustomBubble extends Component {
+
+  renderAvatar(props) {
+    const position = props.position
+
+    // TODO write a unit test for this behavior!!!!
+    if (props.currentMessage.newStory || position=='right') {
+      return null
+    }
+    const user = props.currentMessage.user
+    return (
+      <View style={{backgroundColor:'red', flex:1, height:100, marginRight:20, flexDirection:'column'}}>
+        <View>
+          <GiftedAvatar
+            avatarStyle={styles[position].image}
+            user={user}
+          />
+        </View>
+        <View>
+          <STText style={{fontSize:20}}> {user.name} </STText>
+        </View>
+      </View>
+    )
+
+  }
+
+
   render() {
 
     // styling for when messsage is a new story
@@ -21,19 +49,51 @@ export default class CustomBubble extends Component {
       return '#FFFFFF'
     }
 
+
     return (
-      <Bubble
+      <View style={{flex:1}}>
+        { this.renderAvatar(this.props) }
+        <Bubble
         {...this.props}
         wrapperStyle={{
           left: {
-            backgroundColor: currentColor(this.props.currentMessage.newStory),
+            marginLeft: 30,
+            marginRight: 20,
+            // backgroundColor: currentColor(this.props.currentMessage.newStory),
           }
         }}
         // don't render time if the message is a new story
-        renderTime={(timeProps)=>!this.props.currentMessage.newStory ? <Time {...timeProps}/> : false}
-      />
+        // renderTime={(timeProps)=>!this.props.currentMessage.newStory ? <Time {...timeProps}/> : false}
+
+        // jk, phil doesn't want the time at all
+        renderTime={()=>false}
+        />
+      </View>
     )
 
     return null
   }
 }
+
+const styles = {
+  left: StyleSheet.create({
+    container: {
+      marginRight: 8,
+    },
+    image: {
+      height: 36,
+      width: 36,
+      borderRadius: 18,
+    },
+  }),
+  right: StyleSheet.create({
+    container: {
+      marginLeft: 8,
+    },
+    image: {
+      height: 36,
+      width: 36,
+      borderRadius: 18,
+    },
+  }),
+};

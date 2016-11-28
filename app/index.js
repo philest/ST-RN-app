@@ -89,7 +89,9 @@ export default class App extends Component {
                 initialRoute={Router.getRoute('home')}
                 defaultRouteConfig={{
                   navigationBar: {
-                    backgroundColor: '#fff'
+                    backgroundColor: '#fff',
+                    tintColor: '#000',
+                    height: 50,
                   }
                 }}
                 // onTransitionStart={()=>alert('yo')} //TODO connect this up to store! also, alias the navigator push... maybe?

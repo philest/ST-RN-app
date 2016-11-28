@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   ViewPagerAndroid
 } from 'react-native'
+
 import {
   StackNavigation,
   SlidingTabNavigation,
@@ -15,29 +15,31 @@ import {
 } from '@exponent/ex-navigation'
 import { connect } from 'react-redux'
 import {ViewPager} from 'rn-viewpager';
-import Icon from 'react-native-vector-icons/Ionicons'
 
-
+import MIcon from 'react-native-vector-icons/MaterialIcons'
+import MDIcon from 'react-native-vector-icons/Ionicons'
+import FAIcon from 'react-native-vector-icons/FontAwesome'
 
 import { BimodalTitle, BimodalButton} from './navbarComponents'
 import Router from 'app/router'
 import BookShelf from './BookShelf'
 import Messages from './Messages'
 
-const BUTTON_SIZE = 45
+const BUTTON_SIZE = 32
 
-const makeButton = (size, name, style={}, onPress=()=>{}) => {
-  return <Icon name={name} size={size} style={[styles.navButton, style]} />
+const makeButton = (Font, size, name, style={}, onPress=()=>{}) => {
+  return <Font name={name} size={size} color='black' style={[{}, style]} />
 }
 
+
 const rightButtons = [
-  { button:makeButton(BUTTON_SIZE, 'md-arrow-round-forward'), goto:1 },
-  { button:makeButton(BUTTON_SIZE, 'md-information-circle') },
+  { button:makeButton(MDIcon, BUTTON_SIZE, 'md-arrow-forward'), goto:1 },
+  { button:makeButton(MIcon, BUTTON_SIZE, 'info-outline', ) },
 ]
 
 const leftButtons = [
   { buttons:null },
-  { button:makeButton(BUTTON_SIZE, 'md-apps'), goto:0 },
+  { button:makeButton(FAIcon, BUTTON_SIZE-3, 'book'), goto:0 },
 ]
 
 class HomePage extends Component {

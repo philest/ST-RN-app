@@ -17,6 +17,7 @@ import CustomBubble from './CustomBubble'
 import CustomDay from './CustomDay'
 
 
+import STText from 'app/components/STText'
 
 export default class Example extends React.Component {
 
@@ -35,6 +36,7 @@ export default class Example extends React.Component {
     this.renderCustomActions = this.renderCustomActions.bind(this);
     this.renderBubble = this.renderBubble.bind(this);
     this.renderFooter = this.renderFooter.bind(this);
+    this.renderAvatar = this.renderAvatar.bind(this)
     this.onLoadEarlier = this.onLoadEarlier.bind(this);
     this._isAlright = null;
   }
@@ -179,6 +181,7 @@ export default class Example extends React.Component {
     )
   }
 
+
   renderFooter(props) {
     if (this.state.typingText) {
       return (
@@ -196,7 +199,10 @@ export default class Example extends React.Component {
     if (props.currentMessage.newStory) {
       return null
     }
-    return <Avatar {...props} />
+    modProps = {...props, containerStyle:{flex:1, 'backgroundColor':'red', marginRight:50}}
+    return <View style={{flex:1, backgroundColor:'red'}}>
+     <Avatar {...props}/>
+    </View>
   }
 
   render() {
@@ -217,8 +223,9 @@ export default class Example extends React.Component {
         renderBubble={this.renderBubble}
         renderCustomView={this.renderCustomView}
         renderFooter={this.renderFooter}
-        renderAvatar={this.renderAvatar}
+        renderAvatar={()=>null}
         renderDay={this.renderDay}
+
         />
       </View>
     );

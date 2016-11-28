@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   ViewPagerAndroid
 } from 'react-native';
-
+import STText from 'app/components/STText'
 import { connect } from 'react-redux'
 
-const QuestionMark =  <View><Text>?</Text></View>
+const QuestionMark =  <View><STText>?</STText></View>
 
 class BimodalButton_ extends Component {
   static defaultProps = {
     buttons: [QuestionMark, QuestionMark]
   }
   _renderButton (mode) {
-    const padding = 15
+    const padding = 20
     const position = this.props.position
     const page = this.props.buttons[mode].goto
     const button = this.props.buttons[mode].button
@@ -37,7 +36,7 @@ class BimodalTitle_ extends Component {
   }
   _renderTitle(mode) {
     return <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
-      <Text style={{fontSize:25}}> {this.props.titles[mode]} </Text>
+      <STText style={{fontSize:25}}> {this.props.titles[mode]} </STText>
     </View>
   }
   render () { return this._renderTitle(this.props.mode) }
