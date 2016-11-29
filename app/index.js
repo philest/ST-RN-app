@@ -91,7 +91,7 @@ export default class App extends Component {
                   navigationBar: {
                     backgroundColor: '#fff',
                     tintColor: '#000',
-                    height: 50,
+                    height: 55,
                   }
                 }}
                 // onTransitionStart={()=>alert('yo')} //TODO connect this up to store! also, alias the navigator push... maybe?

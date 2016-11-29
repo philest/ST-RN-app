@@ -16,6 +16,8 @@ var COMPONENT_NAMES = ['Title', 'LeftButton', 'RightButton'];
 
 const TotalNavHeight = 60
 
+const TEXT_PADDING = 15
+
 export default class extends Component {
   constructor(props: any) {
     super(props);
@@ -49,13 +51,13 @@ export default class extends Component {
 
           <View>
           <TouchableOpacity onPress={this.props.onPress}>
-            <View style={{width:TotalNavHeight, width:TotalNavHeight}}>
-              <Icon name='ios-arrow-back' size={40} color='white'/>
+            <View style={{width:TotalNavHeight, width:TotalNavHeight, paddingTop:TEXT_PADDING}}>
+              <Icon name='ios-arrow-back' size={30} color='white'/>
             </View>
 
           </TouchableOpacity>
           </View>
-        <Text style={{color:'white', fontSize:20, paddingLeft:20}}>
+        <Text style={{color:'white', fontSize:20, paddingLeft:20, paddingTop:TEXT_PADDING}}>
           { this.props.text }
         </Text>
 

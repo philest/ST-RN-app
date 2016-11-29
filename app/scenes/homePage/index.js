@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  ViewPagerAndroid
+  ViewPagerAndroid,
+  Text
 } from 'react-native'
 
 import {
@@ -38,15 +39,15 @@ const rightButtons = [
 ]
 
 const leftButtons = [
-  { buttons:null },
-  { button:makeButton(FAIcon, BUTTON_SIZE-3, 'book'), goto:0 },
+  { button:null },
+  { button:<View><Text style={{paddingTop:5, fontSize:35,fontFamily:'Flaticon', color:'black'}}>A</Text></View>, goto:0 },
 ]
 
 class HomePage extends Component {
 
   static route = {
     navigationBar: {
-      renderTitle: ()=> <BimodalTitle titles={['Class Library', 'Ms. Stobierski']} />,
+      renderTitle: ()=> <BimodalTitle titles={['Class Library', 'Ms. Stobiergski']} />,
       renderRight: ()=> <BimodalButton position='right' buttons={rightButtons} />,
       renderLeft:  ()=> <BimodalButton position='left' buttons={leftButtons} />,
     },

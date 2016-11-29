@@ -15,7 +15,7 @@ class BimodalButton_ extends Component {
     buttons: [QuestionMark, QuestionMark]
   }
   _renderButton (mode) {
-    const padding = 20
+    const padding = 24
     const position = this.props.position
     const page = this.props.buttons[mode].goto
     const button = this.props.buttons[mode].button

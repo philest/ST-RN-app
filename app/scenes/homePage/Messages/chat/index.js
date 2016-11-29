@@ -15,7 +15,7 @@ import { GiftedChat, Actions, Bubble, Avatar} from 'react-native-gifted-chat';
 import CustomView from './CustomView'
 import CustomBubble from './CustomBubble'
 import CustomDay from './CustomDay'
-
+import CustomMessageText from './CustomMessageText'
 
 import STText from 'app/components/STText'
 
@@ -205,6 +205,14 @@ export default class Example extends React.Component {
     </View>
   }
 
+  renderMessageText(props) {
+    return <CustomMessageText {...props} />
+  }
+
+  renderAvatar() {
+    return null
+  }
+
   render() {
     return (
       <View style={{flex:1}}>
@@ -223,7 +231,8 @@ export default class Example extends React.Component {
         renderBubble={this.renderBubble}
         renderCustomView={this.renderCustomView}
         renderFooter={this.renderFooter}
-        renderAvatar={()=>null}
+        renderAvatar={this.renderAvatar}
+        renderMessageText={this.renderMessageText}
         renderDay={this.renderDay}
 
         />

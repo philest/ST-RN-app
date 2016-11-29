@@ -14,8 +14,8 @@ export default class CustomView extends Component {
   render() {
     if (this.props.currentMessage.newStory) {
       return (
-        <View style={{backgroundColor:'white', paddingLeft:30}}>
-          <View style={{alignSelf:'center', margin:15, alignItems:'center'}}>
+        <View style={{backgroundColor:'white'}}>
+          <View style={{marginTop:15, marginBottom:15, alignItems:'center'}}>
             <View style={{transform:[{rotateZ:'-5deg'}]}}>
               <TouchableOpacity onPress={()=>alert(this.props.currentMessage.newStory.title)}>
               <Image resizeMode='contain' style={{width:200, height:200}}source={this.props.currentMessage.newStory.titleImage} />

@@ -4,8 +4,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text
 } from 'react-native'
+
+import STText from 'app/components/STTextRegular'
 
 import { Day } from 'react-native-gifted-chat';
 
@@ -18,10 +19,10 @@ export default class CustomBubble extends Component {
           <View style={{flex:1, alignItems:'center'}}>
             <View style={{flex:1, flexDirection:'row', marginTop:10, marginBottom:7, marginLeft:50, marginRight:50, alignItems:'center'}}>
               <View style={{flex:3, borderTopWidth:2, borderColor:'grey'}}/>
-              <Text style={{flex:2, fontSize:16, textAlign:'center', fontWeight:'bold', color:'darkslategrey'}}> Today </Text>
+              <STText style={{flex:2, fontSize:15, textAlign:'center', color:'darkslategrey'}}> Today </STText>
               <View style={{flex:3, borderTopWidth:2, borderColor:'darkslategrey'}}/>
             </View>
-            <Text style={{color:'black', marginBottom:15, fontWeight:'bold',fontSize:30}}> Your Story </Text>
+            <STText style={{color:'black', marginBottom:15, fontWeight:'bold',fontSize:30}}> Your Story </STText>
           </View>
         )
       }

@@ -10,7 +10,9 @@ import {
 
 import STText from 'app/components/STText'
 
-import { Bubble, Time, GiftedAvatar } from 'react-native-gifted-chat';
+import { Bubble, Time} from 'react-native-gifted-chat';
+
+import GiftedAvatar from 'react-native-gifted-chat/src/GiftedAvatar'
 
 export default class CustomBubble extends Component {
 
@@ -23,15 +25,13 @@ export default class CustomBubble extends Component {
     }
     const user = props.currentMessage.user
     return (
-      <View style={{backgroundColor:'red', flex:1, height:100, marginRight:20, flexDirection:'column'}}>
+      <View style={{ flex:1, marginRight:20, flexDirection:'row', alignItems:'center'}}>
+        <GiftedAvatar
+          avatarStyle={[styles[position].image]}
+          user={user}
+        />
         <View>
-          <GiftedAvatar
-            avatarStyle={styles[position].image}
-            user={user}
-          />
-        </View>
-        <View>
-          <STText style={{fontSize:20}}> {user.name} </STText>
+          <STText style={{fontSize:18, color:'black'}}> {user.name} </STText>
         </View>
       </View>
     )
@@ -54,19 +54,22 @@ export default class CustomBubble extends Component {
       <View style={{flex:1}}>
         { this.renderAvatar(this.props) }
         <Bubble
-        {...this.props}
-        wrapperStyle={{
-          left: {
-            marginLeft: 30,
-            marginRight: 20,
-            // backgroundColor: currentColor(this.props.currentMessage.newStory),
-          }
-        }}
-        // don't render time if the message is a new story
-        // renderTime={(timeProps)=>!this.props.currentMessage.newStory ? <Time {...timeProps}/> : false}
+          {...this.props}
+          wrapperStyle={{
+            left: {
+              marginLeft: 40,
+              marginRight: 20,
+              // backgroundColor: currentColor(this.props.currentMessage.newStory),
+            }
+          }}
+          textStyle={{
+            fontSize:40
+          }}
+          // don't render time if the message is a new story
+          // renderTime={(timeProps)=>!this.props.currentMessage.newStory ? <Time {...timeProps}/> : false}
 
-        // jk, phil doesn't want the time at all
-        renderTime={()=>false}
+          // jk, phil doesn't want the time at all
+          renderTime={()=>false}
         />
       </View>
     )

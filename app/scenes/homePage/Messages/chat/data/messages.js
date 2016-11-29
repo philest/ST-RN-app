@@ -1,3 +1,15 @@
+import React from 'react'
+import {Image} from 'react-native'
+const styles = {
+  avatarStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+  }
+}
+
 module.exports = [
   {
     _id: Math.round(Math.random() * 1000000),
@@ -18,7 +30,8 @@ module.exports = [
     createdAt: new Date(Date.now()),
     user: {
       _id: 2,
-      name: 'React Native',
+      name: 'Ms. Stobierski',
+      avatar: () => <Image source={require('./harlene.png')} style={styles.avatarStyle}/>
     },
   },
 
