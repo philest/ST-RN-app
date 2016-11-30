@@ -25,7 +25,7 @@ export default STGridView = ({items, itemsPerRow, customPress}) => (
               // TODO:
               //customPress={ () => this.props.baseNavPush({title:'Details', index:1}) } // TODO: move this behavior to the container...
               title={r.title}
-              imageSrc={`https://s3.amazonaws.com/st-messenger/day1/${r.awsKey}/${r.awsKey}${1+r.offset}.jpg`}
+              imageSrc={r.img}
               timeFirstRead={r.timeFirstRead}
               rowItemWidth={(width-(2*murrginz))/itemsPerRow}
               customPress={customPress}

@@ -63,7 +63,7 @@ const gordon = 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRBQ5NmbgQu
 const will   = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzw4uUsaLJz2IC1_fPuA_cl6lJEe_mgOONiSZsw5DH2x9v0Yk4'
 
 // TODO: will probably want a timeRecievedAt field at some point
-const initialState = [
+const initialState =  [
     {
       title: 'Dinner at the Zoo',
       awsKey: 'cook',
@@ -73,7 +73,7 @@ const initialState = [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
-      thumbnail: cook,
+      img: require('app/assets/img/spines/cook_spine.png'),
     },
     {
       title: "Rosie's Find",
@@ -84,7 +84,7 @@ const initialState = [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      thumbnail: chores,
+      img: require('app/assets/img/spines/coon_spine.png'),
     },
     {
       title: "Baby Bird",
@@ -95,7 +95,7 @@ const initialState = [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      thumbnail: gordon,
+      img: require('app/assets/img/spines/bird_spine.png'),
     },
     {
       title: "The Ants!",
@@ -106,18 +106,29 @@ const initialState = [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
-      thumbnail: will,
+      img: require('app/assets/img/spines/ants_spine.png'),
     },
     {
       title: "Dream",
       awsKey: "dream",
-      description: "A story about where you'lll go after you fall asleep",
+      description: "A story about where you'll go after you fall asleep",
       offset:0,
       numPages: 8,
+      timeRevealedAt: 0,
+      timeFirstRead: 0,
+      timeLastOpened: 0,
+      img: require('app/assets/img/spines/dream_spine.png'),
+    },
+    {
+      title: "Sam's Spaceship",
+      awsKey: 'sam',
+      description: "Sam adventures through space",
+      offset:0,
+      numPages:10,
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      thumbnail: cook,
+      img: require('app/assets/img/spines/sam_spine.png'),
     },
     {
       title:'My Chores!',
@@ -128,7 +139,7 @@ const initialState = [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      thumbnail: cook,
+      img: require('app/assets/img/spines/chores_spine.png'),
     },
     {
       title: 'Kitty',
@@ -139,7 +150,7 @@ const initialState = [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      thumbnail: cook,
+      img: require('app/assets/img/spines/scratch_spine.png'),
     },
     {
       title: 'Magic Seed',
@@ -150,6 +161,17 @@ const initialState = [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      thumbnail: cook,
-    }
+      img: require('app/assets/img/spines/seed_spine.png'),
+    },
+    {
+      title: "Eli's Pets",
+      awsKey: 'whale',
+      description: "A story about kitchen swimming",
+      offset:1,
+      numPages:10,
+      timeRevealedAt: 0,
+      timeFirstRead: 0,
+      timeLastOpened: 0,
+      img: require('app/assets/img/spines/whale_spine.png'),
+    },
   ]

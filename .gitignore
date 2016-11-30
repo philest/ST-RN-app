@@ -44,3 +44,7 @@ android/keystores/debug.keystore
 #
 **/*.keystore
 android/keystore.properties
+generate_spines/original
+generate_spines/output_img*
+generate_spines/node_modules
+app/assets/img/spines
