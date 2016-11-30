@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
   dummy: {
     width:(width-(2*murrginz))/3,
     height: 20,
-    backgroundColor:'red'
+    // backgroundColor:'red'
   }
 });

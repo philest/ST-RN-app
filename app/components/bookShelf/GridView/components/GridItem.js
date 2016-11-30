@@ -31,11 +31,17 @@ const renderRight = (index, itemsPerRow) => {
   // return ((index % itemsPerRow) == itemsPerRow-1) ? 0 : 30;
 }
 
+// TODO: this only works for 2 items per row :)
+const alignment = (index, itemsPerRow) => {
+  return (index % itemsPerRow) ? 'flex-end' : 'flex-start';
+  // return ((index % itemsPerRow) == itemsPerRow-1) ? 0 : 30;
+}
+
 export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, customPress, index}) => {
   const imgWidth = rowItemWidth*.9
   return (
-    <View style={[styles.rowContainer, {left:renderLeft(index,2), paddingRight:renderRight(index,2), height:imgWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
-      <View  style={[styles.thumbContainer, { width:imgWidth-itemBuffer, height:imgWidth+thumbHeightBump, backgroundColor:'pink'}]} >
+    <View style={[styles.rowContainer, {alignItems:alignment(index,2), height:imgWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
+      <View  style={[styles.thumbContainer, { width:imgWidth-itemBuffer, height:imgWidth+thumbHeightBump}]} >
         <TouchableOpacity onPress={()=>customPress(index)} >
           <Image style={[styles.thumbnail, {minWidth:imgWidth-itemBuffer, minHeight:imgWidth+imgBump}]} source={imageSrc} />
           {/* <Image style={[styles.thumbnail, {width:imgWidth-itemBuffer, height:imgWidth+imgBump}]} source={imageSrc} /> */}
@@ -49,16 +55,17 @@ export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, custom
 
 const styles = StyleSheet.create({
   rowContainer: {
+    flex:1,
     flexDirection:'column',
     marginBottom: SPACE_BETWEEN_SHELVES,
-    borderWidth:2,
-    borderColor:'red',
+    // borderWidth:2,
+    // borderColor:'red',
   },
   thumbContainer: {
+    flex:1,
     flexDirection:'column',
-    borderColor: 'green',
+    // borderColor: 'green',
     // borderWidth: 2,
-    alignSelf: 'center'
   },
   thumbnail: {
     resizeMode: 'contain',

@@ -50,7 +50,7 @@ var CollectionView = React.createClass({
       });
       return (
         <View style={styles.group}>
-          <View style={{flexDirection:'row', flex:1, backgroundColor:'green'}}>
+          <View style={{flexDirection:'row', flex:1,}}>
             {items}
             { this.renderShelfVisual(group, itemsPerRow) }
           </View>
