@@ -36,7 +36,7 @@ var CollectionView = React.createClass({
     },
     renderShelfVisual: function(items, itemsPerRow) {
       if (items.length == itemsPerRow && !items[0].dummy) {
-        return <BookShelfVisual width={300} />  
+        return <BookShelfVisual width={300} />
       }
       return null
     },
@@ -50,7 +50,7 @@ var CollectionView = React.createClass({
       });
       return (
         <View style={styles.group}>
-          <View style={{flexDirection:'row', flex:1}}>
+          <View style={{flexDirection:'row', flex:1, backgroundColor:'green'}}>
             {items}
             { this.renderShelfVisual(group, itemsPerRow) }
           </View>

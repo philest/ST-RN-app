@@ -4,7 +4,8 @@ import {
   View,
   TouchableOpacity,
   ViewPagerAndroid,
-  Text
+  Text,
+  Image
 } from 'react-native'
 
 import {
@@ -70,6 +71,7 @@ class HomePage extends Component {
           keyboardDismissMode='on-drag'
           onPageSelected={this.props.updateHomePageIndex}>
           <View style={{flex:1}}>
+            {/* <Image source={require('image!bird_spine')}/> */}
             <BookShelf/>
           </View>
           <View style={{flex:1}}>

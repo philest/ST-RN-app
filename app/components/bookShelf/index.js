@@ -14,6 +14,8 @@ import STListView               from './ListView'
 
 // this is an incredibly dumb hack to make the grid look nice
 const _pushDummies = (arr) => [...arr, {dummy:true}, {dummy:true}]
+// const _pushDummies = (arr) => [...arr,]
+ 
 
 actionBatch = (storyIndex) => {
   return batchActions([

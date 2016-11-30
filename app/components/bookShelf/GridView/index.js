@@ -3,8 +3,8 @@ import {
   StyleSheet, View, Dimensions
 } from 'react-native'
 
-import GridView from './GridView'
-import GridItem from './GridItem'
+import GridView from './components/GridView'
+import GridItem from './components/GridItem'
 
 const { width, height } = Dimensions.get('window')
 
@@ -25,7 +25,8 @@ export default STGridView = ({items, itemsPerRow, customPress}) => (
               // TODO:
               //customPress={ () => this.props.baseNavPush({title:'Details', index:1}) } // TODO: move this behavior to the container...
               title={r.title}
-              imageSrc={r.img}
+              // imageSrc={'../../../assets/img/spines/bird_spine.png'}
+              imageSrc={{uri:`${r.awsKey}_spine`}}
               timeFirstRead={r.timeFirstRead}
               rowItemWidth={(width-(2*murrginz))/itemsPerRow}
               customPress={customPress}
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
   },
   dummy: {
     width:(width-(2*murrginz))/3,
-    height: 20
+    height: 20,
+    backgroundColor:'red'
   }
 });

@@ -73,7 +73,7 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/cook_spine.png'),
+      img: require('image!cook_spine'),
     },
     {
       title: "Rosie's Find",
@@ -84,7 +84,7 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/coon_spine.png'),
+      img: require('image!coon_spine'),
     },
     {
       title: "Baby Bird",
@@ -95,7 +95,7 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/bird_spine.png'),
+      img: require('image!bird_spine'),
     },
     {
       title: "The Ants!",
@@ -106,7 +106,7 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/ants_spine.png'),
+      img: require('image!ants_spine'),
     },
     {
       title: "Dream",
@@ -117,7 +117,7 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/dream_spine.png'),
+      img: require('image!dream_spine'),
     },
     {
       title: "Sam's Spaceship",
@@ -128,7 +128,7 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/sam_spine.png'),
+      img: require('image!sam_spine'),
     },
     {
       title:'My Chores!',
@@ -139,7 +139,7 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/chores_spine.png'),
+      img: require('image!chores_spine'),
     },
     {
       title: 'Kitty',
@@ -150,7 +150,7 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/scratch_spine.png'),
+      img: require('image!scratch_spine'),
     },
     {
       title: 'Magic Seed',
@@ -161,7 +161,7 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/seed_spine.png'),
+      img: require('image!seed_spine'),
     },
     {
       title: "Eli's Pets",
@@ -172,6 +172,6 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('app/assets/img/spines/whale_spine.png'),
+      img: require('image!whale_spine'),
     },
   ]
