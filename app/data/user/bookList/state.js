@@ -136,7 +136,7 @@ const initialState =  [
       description: "A story about helping",
       offset:0,
       numPages: 6,
-      timeRevealedAt: Date.now(),
+      timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
       img: require('image!chores_spine'),

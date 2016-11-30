@@ -20,6 +20,7 @@ export default STGridView = ({items, itemsPerRow, customPress}) => (
         if (!r.dummy) {
           return (
             <GridItem
+              numItems={items.length}
               key={rid}
               index={parseInt(r.key)} //TODO no... don't do this....
               // TODO:
@@ -34,7 +35,7 @@ export default STGridView = ({items, itemsPerRow, customPress}) => (
           )
         }
         // render a dummy
-        else return ( <View key={rid} style={styles.dummy}/> )
+        else return ( <View key={rid} style={{ width:(width-(2*murrginz))/itemsPerRow, height: 20}}/> )
       }
     }
   />
@@ -51,9 +52,5 @@ const styles = StyleSheet.create({
     minWidth: width-(murrginz*2),
     backgroundColor: '#F5FCFF',
   },
-  dummy: {
-    width:(width-(2*murrginz))/3,
-    height: 20,
-    // backgroundColor:'red'
-  }
+  dummy:{}
 });

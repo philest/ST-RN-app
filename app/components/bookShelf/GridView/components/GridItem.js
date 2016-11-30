@@ -32,15 +32,15 @@ const renderRight = (index, itemsPerRow) => {
 }
 
 // TODO: this only works for 2 items per row :)
-const alignment = (index, itemsPerRow) => {
-  return (index % itemsPerRow) ? 'flex-end' : 'flex-start';
+const alignment = (index, numItems, itemsPerRow) => {
+  return ((index + numItems) % itemsPerRow) ? 'flex-end' : 'flex-start';
   // return ((index % itemsPerRow) == itemsPerRow-1) ? 0 : 30;
 }
 
-export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, customPress, index}) => {
+export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, customPress, index, numItems}) => {
   const imgWidth = rowItemWidth*.9
   return (
-    <View style={[styles.rowContainer, {alignItems:alignment(index,2), height:imgWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
+    <View style={[styles.rowContainer, {alignItems:alignment(index,numItems,2), height:imgWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
       <View  style={[styles.thumbContainer, { width:imgWidth-itemBuffer, height:imgWidth+thumbHeightBump}]} >
         <TouchableOpacity onPress={()=>customPress(index)} >
           <Image style={[styles.thumbnail, {minWidth:imgWidth-itemBuffer, minHeight:imgWidth+imgBump}]} source={imageSrc} />
