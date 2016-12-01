@@ -37,12 +37,12 @@ const alignment = (index, numItems, itemsPerRow) => {
   // return ((index % itemsPerRow) == itemsPerRow-1) ? 0 : 30;
 }
 
-export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, customPress, index, numItems}) => {
+export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, onPress, index, numItems}) => {
   const imgWidth = rowItemWidth*.9
   return (
     <View style={[styles.rowContainer, {alignItems:alignment(index,numItems,2), height:imgWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
       <View  style={[styles.thumbContainer, { width:imgWidth-itemBuffer, height:imgWidth+thumbHeightBump}]} >
-        <TouchableOpacity onPress={()=>customPress(index)} >
+        <TouchableOpacity onPress={()=>onPress(index)} >
           <Image style={[styles.thumbnail, {minWidth:imgWidth-itemBuffer, minHeight:imgWidth+imgBump}]} source={imageSrc} />
           {/* <Image style={[styles.thumbnail, {width:imgWidth-itemBuffer, height:imgWidth+imgBump}]} source={imageSrc} /> */}
           { renderNew(timeFirstRead) }

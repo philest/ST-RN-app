@@ -1,23 +1,10 @@
-import React from 'react'
-import {Image} from 'react-native'
-const styles = {
-  avatarStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-  }
-}
+import Harlene from './Harlene'
 
 module.exports = [
   {
     _id: Math.round(Math.random() * 1000000),
     text: '',
-    newStory: {
-      title: 'The Magic Seed',
-      titleImage: require('../title.jpg')
-    },
+    newStory: 3,
     createdAt: new Date(Date.now()),
     user: {
       _id: 0,
@@ -31,7 +18,7 @@ module.exports = [
     user: {
       _id: 2,
       name: 'Ms. Stobierski',
-      avatar: () => <Image source={require('./harlene.png')} style={styles.avatarStyle}/>
+      avatar: Harlene
     },
   },
 

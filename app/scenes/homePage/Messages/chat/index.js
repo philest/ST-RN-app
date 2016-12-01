@@ -8,7 +8,7 @@ import {
   StatusBar
 } from 'react-native'
 
-
+import Harlene from './data/Harlene'
 
 import { GiftedChat, Actions, Bubble, Avatar} from 'react-native-gifted-chat';
 // import CustomActions from './CustomActions'
@@ -90,7 +90,7 @@ export default class Example extends React.Component {
       if ((messages[0].image || messages[0].location) || !this._isAlright) {
         this.setState((previousState) => {
           return {
-            typingText: 'React Native is typing'
+            typingText: 'Ms. Stobierski is typing'
           }
         })
       }
@@ -129,8 +129,8 @@ export default class Example extends React.Component {
           createdAt: new Date(),
           user: {
             _id: 2,
-            name: 'React Native',
-            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
+            name: 'Ms. Stobierski',
+            avatar: Harlene,
           },
         }),
       }

@@ -10,15 +10,24 @@ import {
   Text
 } from 'react-native'
 
+import store      from 'app/createStore'
+
+import { bookListArray } from 'app/data/user/bookList/state'
+import { pushStorySplashPage } from 'app/composedActions'
+
 export default class CustomView extends Component {
   render() {
-    if (this.props.currentMessage.newStory) {
+    const sindex = this.props.currentMessage.newStory
+
+    if (sindex) {
+      const s = bookListArray[sindex]
+      const newStorySrc = {uri:`${s.awsKey}_spine`}
       return (
         <View style={{backgroundColor:'white'}}>
-          <View style={{marginTop:15, marginBottom:15, alignItems:'center'}}>
+          <View style={{marginTop:12, marginBottom:15, alignItems:'center'}}>
             <View style={{transform:[{rotateZ:'-5deg'}]}}>
-              <TouchableOpacity onPress={()=>alert(this.props.currentMessage.newStory.title)}>
-              <Image resizeMode='contain' style={{width:200, height:200}}source={this.props.currentMessage.newStory.titleImage} />
+              <TouchableOpacity onPress={()=>store.dispatch(pushStorySplashPage(sindex))}>
+              <Image resizeMode='contain' style={{width:200, height:200}} source={newStorySrc} />
               </TouchableOpacity>
             </View>
             <Text style={{color:'black', fontSize:20, left: 5, top:10}}> Tap to read! </Text>
@@ -29,6 +38,7 @@ export default class CustomView extends Component {
     return null
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {

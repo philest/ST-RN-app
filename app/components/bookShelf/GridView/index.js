@@ -8,7 +8,7 @@ import GridItem from './components/GridItem'
 
 const { width, height } = Dimensions.get('window')
 
-export default STGridView = ({items, itemsPerRow, customPress}) => (
+export default STGridView = ({items, itemsPerRow, onPress}) => (
   <GridView
     items={ items }
     itemsPerRow={itemsPerRow}
@@ -30,7 +30,7 @@ export default STGridView = ({items, itemsPerRow, customPress}) => (
               imageSrc={{uri:`${r.awsKey}_spine`}}
               timeFirstRead={r.timeFirstRead}
               rowItemWidth={(width-(2*murrginz))/itemsPerRow}
-              customPress={customPress}
+              onPress={onPress}
             />
           )
         }

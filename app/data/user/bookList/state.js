@@ -15,10 +15,10 @@ const bookListItem = (state, action) => {
 } // END const bookListItem...
 
 
-const bookList = (state = initialState, action) => {
+const bookList = (state = bookListArray, action) => {
   switch (action.type) {
     case RESET_LIBRARY:
-      return initialState
+      return bookListArray
     case ITEM_REVEAL:
       // find first book in booklist that hasn't been revealed
       // TODO: we're gonna have to do something real here eventually
@@ -63,7 +63,7 @@ const gordon = 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRBQ5NmbgQu
 const will   = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzw4uUsaLJz2IC1_fPuA_cl6lJEe_mgOONiSZsw5DH2x9v0Yk4'
 
 // TODO: will probably want a timeRecievedAt field at some point
-const initialState =  [
+export const bookListArray =  [
     {
       title: 'Dinner at the Zoo',
       awsKey: 'cook',
@@ -73,7 +73,6 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
-      img: require('image!cook_spine'),
     },
     {
       title: "Rosie's Find",
@@ -84,7 +83,6 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('image!coon_spine'),
     },
     {
       title: "Baby Bird",
@@ -95,7 +93,6 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('image!bird_spine'),
     },
     {
       title: "The Ants!",
@@ -106,18 +103,6 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
-      img: require('image!ants_spine'),
-    },
-    {
-      title: "Dream",
-      awsKey: "dream",
-      description: "A story about where you'll go after you fall asleep",
-      offset:0,
-      numPages: 8,
-      timeRevealedAt: 0,
-      timeFirstRead: 0,
-      timeLastOpened: 0,
-      img: require('image!dream_spine'),
     },
     {
       title: "Sam's Spaceship",
@@ -128,7 +113,16 @@ const initialState =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('image!sam_spine'),
+    },
+    {
+      title: "Dream",
+      awsKey: "dream",
+      description: "A story about where you'll go after you fall asleep",
+      offset:0,
+      numPages: 8,
+      timeRevealedAt: 0,
+      timeFirstRead: 0,
+      timeLastOpened: 0,
     },
     {
       title:'My Chores!',
@@ -136,10 +130,9 @@ const initialState =  [
       description: "A story about helping",
       offset:0,
       numPages: 6,
-      timeRevealedAt: 0,
+      timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('image!chores_spine'),
     },
     {
       title: 'Kitty',
@@ -150,7 +143,6 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('image!scratch_spine'),
     },
     {
       title: 'Magic Seed',
@@ -161,7 +153,6 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('image!seed_spine'),
     },
     {
       title: "Eli's Pets",
@@ -172,6 +163,5 @@ const initialState =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
-      img: require('image!whale_spine'),
     },
   ]
