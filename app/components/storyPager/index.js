@@ -19,7 +19,7 @@ import Image from 'react-native-image-progress'
 import BackBar from './BackNav'
 
 import { setCurrentIndex } from './state'
-import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion'
+import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion/state'
 
 var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
 
@@ -148,7 +148,7 @@ const storyInfo = (book, storyIndex) => {
 
 const mapStateToProps = (state) => ({
   storyInfo: storyInfo(state.data.user.bookList[state.components.bookShelf.currentStoryIndex], state.components.bookShelf.currentStoryIndex),
-  currentIndex: console.log(state),
+  currentIndex: state.components.storyPager,
 })
 
 export default connect(mapStateToProps)(StoryPager)
