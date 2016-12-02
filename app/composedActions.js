@@ -11,6 +11,18 @@ import {
   setCurrentStoryIndex
 } from 'app/components/bookShelf/state'
 
+import {
+  openDrawer,
+  setText
+} from 'app/components/readingSuggestion'
+
+export const setTextAndOpenDrawer = (text) => {
+  return batchActions([
+    setText(text),
+    openDrawer(),
+  ])
+}
+
 
 // TODO: if the date is revealed in a way that's not the same order as the booklist,
 // the story correspondence will be wrong... fix some day.

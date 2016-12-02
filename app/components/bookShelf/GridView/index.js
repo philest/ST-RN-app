@@ -14,7 +14,6 @@ export default STGridView = ({items, itemsPerRow, onPress}) => (
     itemsPerRow={itemsPerRow}
     style={styles.gridView}
     renderItem={
-      // i'm pretty sure that GridView only passes in the row object and the index, no section id
       (r, rid) => {
         // if the item is not a dummy, we actually render stuff
         if (!r.dummy) {

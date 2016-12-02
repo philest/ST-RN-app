@@ -18,9 +18,12 @@ import Swiper from 'react-native-swiper'
 import Image from 'react-native-image-progress'
 import BackBar from './BackNav'
 
+import { setCurrentIndex } from './state'
+import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion'
+
 var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
 
- class StoryPager extends Component {
+class StoryPager extends Component {
 
   constructor (props) {
     super(props)
@@ -29,26 +32,29 @@ var { height, width } = Dimensions.get('window') // TODO: arggg what do about th
     this.state = {
       hideNavBar: true
     }
+    this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this)
   }
 
   _renderPages (pages) {
-    return pages.map((url, i) => {
+    return pages.map((p, i) => {
       return (
-        <TouchableWithoutFeedback key={i} onPress={ this._toggleNav }>
-          <View  style={ styles.container } >
-            <StatusBar hidden={true} />
+        <View  key={i} style={ styles.container } >
+          <StatusBar hidden={true} />
+          <TouchableWithoutFeedback  onPress={ this._toggleNav }>
             <View style={ styles.imgWrapper }>
               <Image
-                source         = {{uri: url}}
-                //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
-                indicatorProps = {{size: 80, color: 'pink', style: { backgroundColor:'black' }}}
-                resizeMode     =  'contain'
-                style          = { styles.img }
-                threshold      = { 200 }
+              source         = {{uri: p.url}}
+              //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
+              indicatorProps = {{size: 80, color: 'pink', style: { backgroundColor:'black' }}}
+              resizeMode     =  'contain'
+              style          = { styles.img }
+              threshold      = { 200 }
               />
             </View>
-          </View>
-        </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
+          { p.bubble }
+          {/* <BubblesView bubblesToRender={} /> */}
+        </View>
       )
     })
   }
@@ -57,6 +63,24 @@ var { height, width } = Dimensions.get('window') // TODO: arggg what do about th
     this.setState({
       hideNavBar: !this.state.hideNavBar
     })
+  }
+
+  _onMomentumScrollEnd(e, state, context) {
+    const oldIndex = this.props.currentIndex
+    this.props.dispatch(setCurrentIndex(state.index))
+    if (oldIndex != this.props.currentIndex) {
+      this.props.dispatch(closeDrawer())
+    }
+  }
+
+  componentDidMount() {
+    // TODO: write a damn test for this
+    this.props.dispatch(setCurrentIndex(0));
+    this.props.dispatch(enableDrawer())
+  }
+
+  componentWillUnmount () {
+    this.props.dispatch(disableDrawer())
   }
 
   render ()  {
@@ -68,8 +92,7 @@ var { height, width } = Dimensions.get('window') // TODO: arggg what do about th
           style               = { styles.swiper }
           loop                = { false }
           showsPagination     = { false }
-
-          // onMomentumScrollEnd = { this._onMomentumScrollEnd }
+          onMomentumScrollEnd = { this._onMomentumScrollEnd }
           // renderPagination    = { this._renderPagination }
         >
           { this._renderPages( info.pagesToRender ) }
@@ -107,19 +130,25 @@ const storyInfo = (book, storyIndex) => {
   const numPages = book.numPages
   const offset   = book.offset
   const awsKey   = book.awsKey
-  const pagesToRender = _.times(numPages-offset, (i) => `https://s3.amazonaws.com/st-messenger/day1/${awsKey}/${awsKey}${i+1+offset}.jpg`)
+  const pagesToRender = _.times(numPages-offset, (i) => ({
 
+    url:`https://s3.amazonaws.com/st-messenger/day1/${awsKey}/${awsKey}${i+1+offset}.jpg`,
+    bubble: (i%2)? <View style={{position:'absolute', backgroundColor:
+    'red',width:20, height:20, top:0, left:0}}/> : null
+
+  }))
   const storyInfo = {
     title: book.title,
     description: book.description,
-    pagesToRender: pagesToRender
+    pagesToRender: pagesToRender,
   }
 
   return storyInfo
 }
 
 const mapStateToProps = (state) => ({
-  storyInfo: storyInfo(state.data.user.bookList[state.components.bookShelf.currentStoryIndex], state.components.bookShelf.currentStoryIndex)
+  storyInfo: storyInfo(state.data.user.bookList[state.components.bookShelf.currentStoryIndex], state.components.bookShelf.currentStoryIndex),
+  currentIndex: console.log(state),
 })
 
 export default connect(mapStateToProps)(StoryPager)

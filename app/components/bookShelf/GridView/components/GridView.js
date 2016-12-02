@@ -4,7 +4,7 @@
 
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
   AppRegistry,
@@ -15,39 +15,45 @@ import {
 
 import BookShelfVisual from './BookShelfVisual'
 
-var CollectionView = React.createClass({
-    groupItems: function(items, itemsPerRow) {
+export default class CollectionView extends Component {
+    constructor(props) {
+      super(props)
+      this.renderGroup = this.renderGroup.bind(this)
+    }
+
+    groupItems (items, itemsPerRow) {
         var itemsGroups = [];
         var group = [];
-        items.forEach(function(item) {
+        items.forEach((item) => {
           if (group.length === itemsPerRow) {
             itemsGroups.push(group);
             group = [item];
           } else {
             group.push(item);
           }
-        });
+        })
 
         if (group.length > 0) {
           itemsGroups.push(group);
         }
 
         return itemsGroups;
-    },
-    renderShelfVisual: function(items, itemsPerRow) {
+    }
+
+    renderShelfVisual(items, itemsPerRow) {
       if (items.length == itemsPerRow && !items[0].dummy) {
         return <BookShelfVisual width={300} />
       }
       return null
-    },
-    renderGroup: function(group) {
-      var that = this;
+    }
 
-      const itemsPerRow = that.props.itemsPerRow
+    renderGroup(group) {
 
-      var items = group.map(function(item, index) {
-        return that.props.renderItem(item, index);
-      });
+      const itemsPerRow = this.props.itemsPerRow
+
+      const items = group.map((item, index) => {
+        return this.props.renderItem(item, index)
+      })
       return (
         <View style={styles.group}>
           <View style={{flexDirection:'row', flex:1,}}>
@@ -55,18 +61,20 @@ var CollectionView = React.createClass({
             { this.renderShelfVisual(group, itemsPerRow) }
           </View>
         </View>
-      );
-    },
-    render: function() {
-        var groups = this.groupItems(this.props.items, this.props.itemsPerRow);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      )
+      return <View />
+    }
+
+    render() {
+        var groups = this.groupItems(this.props.items, this.props.itemsPerRow)
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         return (<ListView
           {...this.props}
           renderRow={this.renderGroup}
           dataSource={ds.cloneWithRows(groups)}
-        />);
-    },
-});
+        />)
+    }
+};
 
 
 var styles = StyleSheet.create({
@@ -74,8 +82,5 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // overflow: 'hidden',
   }
-});
-
-module.exports = CollectionView;
+})

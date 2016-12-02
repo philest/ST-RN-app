@@ -32,6 +32,7 @@ import {
   SlidingTabNavigation
 } from '@exponent/ex-navigation'
 
+import Drawer from 'react-native-drawer'
 
 export default class App extends Component {
 
@@ -42,7 +43,9 @@ export default class App extends Component {
     this._keyboardDidHide = this._keyboardDidHide.bind(this)
     this.state = {
       token: "",
-      visibleHeight: Dimensions.get('window').height
+      visibleHeight: Dimensions.get('window').height,
+      drawerOpen:true,
+      drawerDisabled:false
     }
   }
 
@@ -83,21 +86,49 @@ export default class App extends Component {
         <NavigationProvider context={navigationContext}>
           <StatusBar hidden={false} />
           <PushController />
-            <View style={{flex:1, height:this.state.visibleHeight}}>
-              <StackNavigation
-                navigatorUID='root'
-                initialRoute={Router.getRoute('home')}
-                defaultRouteConfig={{
-                  navigationBar: {
-                    backgroundColor: '#fff',
-                    tintColor: '#000',
-                    height: 55,
-                  }
-                }}
-                // onTransitionStart={()=>alert('yo')} //TODO connect this up to store! also, alias the navigator push... maybe?
-                // onTransitionEnd={()=>alert('done')}
-              />
-            </View>
+            <Drawer
+              side='bottom'
+              ref={(ref) => this._drawer = ref}
+              type="overlay"
+              content={
+                <View style={{backgroundColor:'red', flex:1}}></View>
+              }
+              acceptDoubleTap
+              styles={{main: {shadowColor: '#000000', shadowOpacity: 0.3, shadowRadius: 15}}}
+              onOpen={() => {
+                console.log('onopen')
+                this.setState({drawerOpen: true})
+              }}
+              onClose={() => {
+                console.log('onclose')
+                this.setState({drawerOpen: false})
+              }}
+              captureGestures={false}
+              tweenDuration={100}
+              panThreshold={0.08}
+              disabled={this.state.drawerDisabled}
+              openDrawerOffset={(viewport) => {
+                return 100
+              }}
+              panOpenMask={0.2}
+              negotiatePan
+            >
+              <View style={{flex:1, height:this.state.visibleHeight}}>
+                <StackNavigation
+                  navigatorUID='root'
+                  initialRoute={Router.getRoute('home')}
+                  defaultRouteConfig={{
+                    navigationBar: {
+                      backgroundColor: '#fff',
+                      tintColor: '#000',
+                      height: 55,
+                    }
+                  }}
+                  // onTransitionStart={()=>alert('yo')} //TODO connect this up to store! also, alias the navigator push... maybe?
+                  // onTransitionEnd={()=>alert('done')}
+                />
+              </View>
+            </Drawer>
         </NavigationProvider>
       </Provider>
     )
