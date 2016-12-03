@@ -59,7 +59,7 @@ class StoryPager extends Component {
   }
 
   _toggleNav () {
-    
+
     if (this.props.backBarHidden) {
       this.props.dispatch(showBackBar())
       return

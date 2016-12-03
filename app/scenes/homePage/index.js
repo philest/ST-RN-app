@@ -27,6 +27,9 @@ import Router from 'app/router'
 import BookShelf from './BookShelf'
 import Messages from './Messages'
 
+import {QuestionBubble} from 'app/components/st-bubbles'
+
+
 const BUTTON_SIZE = 32
 
 const makeButton = (Font, size, name, style={}, onPress=()=>{}) => {
@@ -75,6 +78,10 @@ class HomePage extends Component {
             <BookShelf/>
           </View>
           <View style={{flex:1}}>
+            <View style={{flexDirection:'row', flex:1}}>
+              <QuestionBubble/>
+              <QuestionBubble glow={true}/>
+            </View>
             <Messages/>
           </View>
         </ViewPagerAndroid>
