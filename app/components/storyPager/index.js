@@ -15,13 +15,15 @@ import _ from 'lodash' // TODO: get this outta here?
 
 
 import Swiper from 'react-native-swiper'
-import Image from 'react-native-image-progress'
 import BackBar from './BackNav'
 
 import { setCurrentIndex, showBackBar, hideBackBar } from './state'
 import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion/state'
+import { setSelectedBubble } from 'app/components/st-bubbles/state'
+import { hideBackBarAndUnselectBubble} from 'app/composedActions'
 
-var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
+
+import StoryPage from './components/storyPage'
 
 class StoryPager extends Component {
 
@@ -34,37 +36,17 @@ class StoryPager extends Component {
 
   }
 
-  _renderPages (pages) {
-    return pages.map((p, i) => {
-      return (
-        <View  key={i} style={ styles.container } >
-          <StatusBar hidden={true} />
-          <TouchableWithoutFeedback  onPress={ this._toggleNav }>
-            <View style={ styles.imgWrapper }>
-              <Image
-                source         = {{uri: p.url}}
-                indicatorProps = {{size: 80, color: 'pink', style: { backgroundColor:'black' }}}
-                resizeMode     =  'contain'
-                style          = { styles.img }
-                threshold      = { 200 }
-                //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
-              />
-            </View>
-          </TouchableWithoutFeedback>
-          { p.bubble }
-          {/* <BubblesView bubblesToRender={} /> */}
-        </View>
-      )
-    })
-  }
 
   _toggleNav () {
-
     if (this.props.backBarHidden) {
-      this.props.dispatch(showBackBar())
+      if (!this.props.currentBubble){
+        this.props.dispatch(showBackBar())
+      } else {
+        this.props.dispatch(setSelectedBubble(null))
+      }
       return
     }
-    this.props.dispatch(hideBackBar())
+    this.props.dispatch(hideBackBarAndUnselectBubble())
   }
 
   _onMomentumScrollEnd(e, state, context) {
@@ -91,10 +73,18 @@ class StoryPager extends Component {
     this.props.dispatch(disableDrawer())
   }
 
+  _renderPages (pages) {
+    return pages.map((p, i) => {
+      return <StoryPage key={i} pageInfo={p} onTouchPage={this._toggleNav}/>
+    })
+  }
+
+
   render ()  {
     const info = this.props.storyInfo
     return(
       <View>
+        <StatusBar hidden={true} />
         <Swiper
           index               = { this.props.savedPageNum || 0 }
           style               = { styles.swiper }
@@ -116,19 +106,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     backgroundColor:'black'
   },
-  img: {
-    flex: 1
-  },
-  imgWrapper: {
-    flex:1,
-    alignSelf:'center',
-    maxHeight:height,
-    minWidth:width
-  },
-  container: {
-    flex:1,
-    backgroundColor:'black'
-  },
 })
 
 const storyInfo = (book, storyIndex) => {
@@ -139,11 +116,9 @@ const storyInfo = (book, storyIndex) => {
   const offset   = book.offset
   const awsKey   = book.awsKey
   const pagesToRender = _.times(numPages-offset, (i) => ({
-
+    i,
     url:`https://s3.amazonaws.com/st-messenger/day1/${awsKey}/${awsKey}${i+1+offset}.jpg`,
-    bubble: (i%2)? <View style={{position:'absolute', backgroundColor:
-    'red',width:20, height:20, top:0, left:0}}/> : null
-
+    bubbles:  book.bubbles[i+1] //TODO: test this...
   }))
   const storyInfo = {
     title: book.title,
@@ -157,7 +132,8 @@ const storyInfo = (book, storyIndex) => {
 const mapStateToProps = (state) => ({
   storyInfo: storyInfo(state.data.user.bookList[state.components.bookShelf.currentStoryIndex], state.components.bookShelf.currentStoryIndex),
   currentIndex: state.components.storyPager.currentIndex,
-  backBarHidden: !state.components.storyPager.backBarEnabled
+  backBarHidden: !state.components.storyPager.backBarEnabled,
+  currentBubble: state.components.stBubbles.selectedBubble
 })
 
 export default connect(mapStateToProps)(StoryPager)

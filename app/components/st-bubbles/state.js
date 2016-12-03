@@ -9,7 +9,7 @@ export const setSelectedBubble = (bubble_ref) => ({
 
 import { updateObject, updateItemInArray } from 'app/reducerUtils'
 
-export default readingSuggestionReducer = (state = initialState, action) => {
+export default stBubblesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SELECTED_BUBBLE:
       return updateObject(state, {selectedBubble: action.bubble_ref})

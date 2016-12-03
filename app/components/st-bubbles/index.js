@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, StyleSheet, Text, TouchableWithoutFeedback} from 'react-native'
+import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
 
 import { setSelectedBubble } from './state'

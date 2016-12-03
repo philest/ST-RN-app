@@ -103,6 +103,12 @@ export const bookListArray =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
+      bubbles: {
+        2: [
+          { x: 0.5, y:0.5, text: "Hey this is a thing" },
+          { x: 0.1, y:0.3, text: "Sup boo."}
+        ],
+      }
     },
     {
       title: "Sam's Spaceship",

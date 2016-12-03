@@ -78,12 +78,6 @@ class HomePage extends Component {
             <BookShelf/>
           </View>
           <View style={{flex:1}}>
-            <View style={{flexDirection:'row', flex:1}}>
-              <QuestionBubble/>
-              <QuestionBubble/>
-              <QuestionBubble width={100} height={100}/>
-
-            </View>
             <Messages/>
           </View>
         </ViewPagerAndroid>

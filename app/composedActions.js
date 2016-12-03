@@ -14,7 +14,28 @@ import {
 import {
   openDrawer,
   setText
-} from 'app/components/readingSuggestion'
+} from 'app/components/readingSuggestion/state'
+
+import {
+  hideBackBar,
+  showBackBar
+} from 'app/components/storyPager/state'
+
+import {
+  setSelectedBubble
+} from 'app/components/st-bubbles/state'
+
+export const hideBackBarAndUnselectBubble = () => {
+  return batchActions([
+    hideBackBar(),
+    setSelectedBubble(null)
+  ])
+}
+
+
+
+
+
 
 export const setTextAndOpenDrawer = (text) => {
   return batchActions([
