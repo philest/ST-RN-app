@@ -16,7 +16,7 @@ import {
   UIManager
 } from '@exponent/ex-navigation'
 import { connect } from 'react-redux'
-import {ViewPager} from 'rn-viewpager';
+import { ViewPager } from 'rn-viewpager'
 
 import MIcon from 'react-native-vector-icons/MaterialIcons'
 import MDIcon from 'react-native-vector-icons/Ionicons'

@@ -51,7 +51,7 @@ mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(QuestionBubble)
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
 
   },
