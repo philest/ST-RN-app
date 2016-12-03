@@ -18,7 +18,7 @@ import Swiper from 'react-native-swiper'
 import Image from 'react-native-image-progress'
 import BackBar from './BackNav'
 
-import { setCurrentIndex } from './state'
+import { setCurrentIndex, showBackBar, hideBackBar } from './state'
 import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion/state'
 
 var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
@@ -29,10 +29,9 @@ class StoryPager extends Component {
     super(props)
 
     this._toggleNav = this._toggleNav.bind(this)
-    this.state = {
-      hideNavBar: true
-    }
     this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this)
+    this._onScrollBeginDrag = this._onScrollBeginDrag.bind(this)
+
   }
 
   _renderPages (pages) {
@@ -43,12 +42,12 @@ class StoryPager extends Component {
           <TouchableWithoutFeedback  onPress={ this._toggleNav }>
             <View style={ styles.imgWrapper }>
               <Image
-              source         = {{uri: p.url}}
-              //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
-              indicatorProps = {{size: 80, color: 'pink', style: { backgroundColor:'black' }}}
-              resizeMode     =  'contain'
-              style          = { styles.img }
-              threshold      = { 200 }
+                source         = {{uri: p.url}}
+                indicatorProps = {{size: 80, color: 'pink', style: { backgroundColor:'black' }}}
+                resizeMode     =  'contain'
+                style          = { styles.img }
+                threshold      = { 200 }
+                //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
               />
             </View>
           </TouchableWithoutFeedback>
@@ -60,18 +59,27 @@ class StoryPager extends Component {
   }
 
   _toggleNav () {
-    this.setState({
-      hideNavBar: !this.state.hideNavBar
-    })
+    
+    if (this.props.backBarHidden) {
+      this.props.dispatch(showBackBar())
+      return
+    }
+    this.props.dispatch(hideBackBar())
   }
 
   _onMomentumScrollEnd(e, state, context) {
     const oldIndex = this.props.currentIndex
+    const currentIndex = state.index
     this.props.dispatch(setCurrentIndex(state.index))
-    if (oldIndex != this.props.currentIndex) {
+    if (oldIndex != currentIndex) {
       this.props.dispatch(closeDrawer())
     }
   }
+
+  _onScrollBeginDrag() {
+      this.props.dispatch(closeDrawer())
+  }
+
 
   componentDidMount() {
     // TODO: write a damn test for this
@@ -92,12 +100,12 @@ class StoryPager extends Component {
           style               = { styles.swiper }
           loop                = { false }
           showsPagination     = { false }
-          onMomentumScrollEnd = { this._onMomentumScrollEnd }
+          onScrollBeginDrag = { this._onScrollBeginDrag } // TODO: test this on iOS :/
           // renderPagination    = { this._renderPagination }
         >
           { this._renderPages( info.pagesToRender ) }
         </Swiper>
-        <BackBar hideNavBar={this.state.hideNavBar} text={ info.title } onPress={this.props.backAction}/>
+        <BackBar hideNavBar={this.props.backBarHidden} text={ info.title } onPress={this.props.backAction}/>
       </View>
     )
   }
@@ -148,7 +156,8 @@ const storyInfo = (book, storyIndex) => {
 
 const mapStateToProps = (state) => ({
   storyInfo: storyInfo(state.data.user.bookList[state.components.bookShelf.currentStoryIndex], state.components.bookShelf.currentStoryIndex),
-  currentIndex: state.components.storyPager,
+  currentIndex: state.components.storyPager.currentIndex,
+  backBarHidden: !state.components.storyPager.backBarEnabled
 })
 
 export default connect(mapStateToProps)(StoryPager)

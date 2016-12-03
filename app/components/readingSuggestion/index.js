@@ -17,7 +17,7 @@ export class UnconnectedReadingSuggestion extends Component {
   render ()  {
     return(
       <Drawer
-        side='bottom'
+        side='top'
         ref={(ref) => this._drawer = ref}
         type="overlay"
         content={
@@ -25,7 +25,6 @@ export class UnconnectedReadingSuggestion extends Component {
             <Text style={styles.txt}> {this.props.text} </Text>
           </View>
         }
-        acceptDoubleTap
         styles={{main: {shadowColor: '#000000', shadowOpacity: 0.3, shadowRadius: 15}}}
         open={this.props.opened}
         onOpen={() => {
@@ -41,7 +40,9 @@ export class UnconnectedReadingSuggestion extends Component {
         disabled={this.props.disabled}
         openDrawerOffset={0.9}
         panOpenMask={0.2}
+        panMode={'closed'}
         negotiatePan
+        acceptDoubleTap
       >
         { this.props.children }
       </Drawer>
