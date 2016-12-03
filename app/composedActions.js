@@ -13,6 +13,7 @@ import {
 
 import {
   openDrawer,
+  closeDrawer,
   setText
 } from 'app/components/readingSuggestion/state'
 
@@ -25,16 +26,23 @@ import {
   setSelectedBubble
 } from 'app/components/st-bubbles/state'
 
-export const hideBackBarAndUnselectBubble = () => {
-  return batchActions([
+
+export const setTextAndSelectBubble = (text, bubble) => {
+  return batchActions([setText(text),
     hideBackBar(),
-    setSelectedBubble(null)
+    setSelectedBubble(bubble),
+    openDrawer()
   ])
 }
 
 
-
-
+export const hideBackBarAndUnselectBubble = () => {
+  return batchActions([
+    setSelectedBubble(null),
+    hideBackBar(),
+    closeDrawer(),
+  ])
+}
 
 
 export const setTextAndOpenDrawer = (text) => {

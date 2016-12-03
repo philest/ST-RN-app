@@ -44,6 +44,7 @@ class StoryPager extends Component {
       } else {
         this.props.dispatch(setSelectedBubble(null))
       }
+      this.props.dispatch(closeDrawer())
       return
     }
     this.props.dispatch(hideBackBarAndUnselectBubble())

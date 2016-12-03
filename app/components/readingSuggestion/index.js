@@ -7,6 +7,9 @@ import Drawer from 'react-native-drawer'
 
 import { openDrawer, closeDrawer } from './state'
 
+import { hideBackBarAndUnselectBubble } from 'app/composedActions'
+
+
 export class UnconnectedReadingSuggestion extends Component {
 
   constructor (props) {
@@ -31,7 +34,7 @@ export class UnconnectedReadingSuggestion extends Component {
           this.props.dispatch(openDrawer())
         }}
         onClose={() => {
-          this.props.dispatch(closeDrawer())
+          this.props.dispatch(hideBackBarAndUnselectBubble())
           // TODO: also disable when have the buttons in
         }}
         captureGestures={false}
@@ -39,8 +42,8 @@ export class UnconnectedReadingSuggestion extends Component {
         panThreshold={0.08}
         disabled={this.props.disabled}
         openDrawerOffset={0.9}
-        panOpenMask={0.2}
-        panMode={'closed'}
+        panOpenMask={0.05}
+        panMode={'open'}
         negotiatePan
         acceptDoubleTap
       >

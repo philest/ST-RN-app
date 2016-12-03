@@ -5,7 +5,6 @@ export const CLOSE_DRAWER   = 'components/ReadingSuggestion/CLOSE_DRAWER'
 export const ENABLE_DRAWER  = 'components/ReadingSuggestion/ENABLE_DRAWER'
 export const DISABLE_DRAWER = 'components/ReadingSuggestion/DISABLE_DRAWER'
 
-
 export const setText = (text) => ({
   type: SET_TEXT,
   text

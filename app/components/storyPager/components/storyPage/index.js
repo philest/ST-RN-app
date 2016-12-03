@@ -15,6 +15,8 @@ import Image from 'react-native-image-progress'
 var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
 import CanvasAwareBubble from '../canvasBubble'
 
+import { setTextAndSelectBubble } from 'app/composedActions'
+
 export default class StoryPager extends Component {
 
   constructor (props) {
@@ -44,6 +46,8 @@ export default class StoryPager extends Component {
         key={`${pageIndex}${i}bbl`}
         imgWidth={this.state.imgWidth} imgHeight={this.state.imgHeight}
         x={b.x} y={b.y}
+        text={b.text}
+        onPress={setTextAndSelectBubble}
       />
     })
   }
@@ -56,8 +60,8 @@ export default class StoryPager extends Component {
         <TouchableWithoutFeedback  onPress={ this.props.onTouchPage }>
           <View style={ styles.imgWrapper }>
             <Image
-              source         = {{uri: p.url}}
-              indicatorProps = {{size: 80, color: 'pink', style: { backgroundColor:'black' }}}
+              source         = {{ uri: p.url }}
+              indicatorProps = {{ size: 80, color: 'pink', style: { backgroundColor:'black' }}}
               resizeMode     =  'contain'
               style          = { styles.img }
               threshold      = { 200 }

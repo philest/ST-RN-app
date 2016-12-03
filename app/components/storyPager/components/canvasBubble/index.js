@@ -19,6 +19,8 @@ export default class CanvasBubble extends Component {
       <QuestionBubble
         width={this.props.bubbleWidth}
         height={this.props.bubbleHeight}
+        onPress={this.props.onPress}
+        text={this.props.text}
       />
       </View>
     }

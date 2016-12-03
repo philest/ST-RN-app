@@ -2,18 +2,14 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
 
-import { setSelectedBubble } from './state'
+
 
 export class QuestionBubble extends Component {
 
   constructor (props) {
     super(props)
-    this._onPress = this._onPress.bind(this)
     this.isMe = this.isMe.bind(this)
-  }
-
-  _onPress () {
-    this.props.dispatch(setSelectedBubble(this))
+    this.onPress= this.onPress.bind(this)
   }
 
   isMe(selectedBubble) {
@@ -21,6 +17,10 @@ export class QuestionBubble extends Component {
       return `rgba(100,0,120,0.3)`
     }
     return `rgba(100,0,120,0)`
+  }
+
+  onPress (func) {
+    this.props.dispatch(func(this.props.text, this))
   }
 
   render () {
@@ -34,7 +34,7 @@ export class QuestionBubble extends Component {
 
     glowAlpha = this.isMe(this.props.selectedBubble)
     return (
-      <TouchableWithoutFeedback style={{width:containerWidth, height:containerHeight}} onPress={this._onPress}>
+      <TouchableWithoutFeedback style={{width:containerWidth, height:containerHeight}} onPress={()=>this.onPress(this.props.onPress)}>
         <View style={[styles.glow, {backgroundColor: glowAlpha, borderRadius:containerRadius, width:containerWidth, height:containerHeight,}]}>
           <View style={[styles.bubble, {borderRadius:bubbleRadius, width:bubbleWidth, height:bubbleHeight}]}>
             <Text style={[styles.bubbleText, {fontSize:bubbleWidth-15}]}>?</Text>
