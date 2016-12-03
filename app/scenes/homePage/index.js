@@ -27,7 +27,7 @@ import Router from 'app/router'
 import BookShelf from './BookShelf'
 import Messages from './Messages'
 
-import {QuestionBubble} from 'app/components/st-bubbles'
+import QuestionBubble from 'app/components/st-bubbles'
 
 
 const BUTTON_SIZE = 32
@@ -80,7 +80,9 @@ class HomePage extends Component {
           <View style={{flex:1}}>
             <View style={{flexDirection:'row', flex:1}}>
               <QuestionBubble/>
-              <QuestionBubble glow={true}/>
+              <QuestionBubble/>
+              <QuestionBubble width={100} height={100}/>
+
             </View>
             <Messages/>
           </View>
