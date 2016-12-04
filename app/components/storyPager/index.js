@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash' // TODO: get this outta here?
 
 
-import Swiper from 'react-native-swiper'
+import Swiper from 'app/vendor/react-native-swiper'
 import BackBar from './BackNav'
 
 import { setCurrentIndex, showBackBar, hideBackBar } from './state'
@@ -60,7 +60,7 @@ class StoryPager extends Component {
   }
 
   _onScrollBeginDrag() {
-      this.props.dispatch(closeDrawer())
+    this.props.dispatch(hideBackBarAndUnselectBubble())
   }
 
 
@@ -72,6 +72,7 @@ class StoryPager extends Component {
 
   componentWillUnmount () {
     this.props.dispatch(disableDrawer())
+    this.props.dispatch(hideBackBar())
   }
 
   _renderPages (pages) {
@@ -119,7 +120,7 @@ const storyInfo = (book, storyIndex) => {
   const pagesToRender = _.times(numPages-offset, (i) => ({
     i,
     url:`https://s3.amazonaws.com/st-messenger/day1/${awsKey}/${awsKey}${i+1+offset}.jpg`,
-    bubbles:  book.bubbles[i+1] //TODO: test this...
+    bubbles: (book.bubbles) ? book.bubbles[i+1] : [] //TODO: test this...
   }))
   const storyInfo = {
     title: book.title,

@@ -12,10 +12,11 @@ const createStoreWithNavigation = createNavigationEnabledStore({
 import componentsReducer       from 'app/components/reducer'
 import scenesReducer           from 'app/scenes/reducer'
 import dataReducer             from 'app/data/reducer'
-
+import globalReducer           from './reducer'
 import { firebaseInfoReducer } from 'app/services/pushController'
 
 const rootReducer = combineReducers({
+  global: globalReducer,
   components: componentsReducer,
   scenes: scenesReducer,
   data: dataReducer,

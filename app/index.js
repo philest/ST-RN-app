@@ -32,6 +32,7 @@ import {
   SlidingTabNavigation
 } from '@exponent/ex-navigation'
 
+import { allowPush } from './reducer'
 
 import Drawer  from 'app/components/readingSuggestion'
 
@@ -79,6 +80,11 @@ export default class App extends Component {
     })
   }
 
+  onTransitionEnd() {
+    this.dispatch(allowPush())
+    Keyboard.dismiss()
+  }
+
   // this may be handy some day: https://github.com/exponentjs/ex-navigation/issues/73
 
   render () {
@@ -99,7 +105,7 @@ export default class App extends Component {
                     height: 55,
                   }
                 }}
-                // onTransitionStart={()=>alert('yo')} //TODO connect this up to store! also, alias the navigator push... maybe?
+                onTransitionEnd={this.onTransitionEnd} //TODO connect this up to store! also, alias the navigator push... maybe?
                 // onTransitionEnd={()=>alert('done')}
               />
             </View>

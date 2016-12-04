@@ -1,20 +1,18 @@
-// vendor components
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-import Drawer from 'react-native-drawer'
-
+// actions
 import { openDrawer, closeDrawer } from './state'
-
 import { hideBackBarAndUnselectBubble } from 'app/composedActions'
 
+// components
+import Drawer from 'react-native-drawer'
 
 export class UnconnectedReadingSuggestion extends Component {
 
   constructor (props) {
     super(props)
-    // TODO: someday dynamic stuff...
   }
 
   render ()  {
@@ -35,7 +33,6 @@ export class UnconnectedReadingSuggestion extends Component {
         }}
         onClose={() => {
           this.props.dispatch(hideBackBarAndUnselectBubble())
-          // TODO: also disable when have the buttons in
         }}
         captureGestures={false}
         tweenDuration={100}
@@ -44,7 +41,7 @@ export class UnconnectedReadingSuggestion extends Component {
         openDrawerOffset={0.9}
         panOpenMask={0.05}
         panCloseMaks={1}
-        panMode={'open'}
+        acceptPan={false}
         negotiatePan
         acceptDoubleTap
       >

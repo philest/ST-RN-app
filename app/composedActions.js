@@ -26,6 +26,9 @@ import {
   setSelectedBubble
 } from 'app/components/st-bubbles/state'
 
+import { disablePush } from './reducer'
+
+import store from 'app/createStore'
 
 export const setTextAndSelectBubble = (text, bubble) => {
   return batchActions([setText(text),
@@ -56,11 +59,16 @@ export const setTextAndOpenDrawer = (text) => {
 // TODO: if the date is revealed in a way that's not the same order as the booklist,
 // the story correspondence will be wrong... fix some day.
 export const pushStorySplashPage = (storyIndex) => {
-  return batchActions([
-    setCurrentStoryIndex(storyIndex),
-    itemMarkRead(storyIndex), //TODO: change this api...
-    NavigationActions.push('root', Router.getRoute('storySplashPage'))
-  ])
+  const state = store.getState()
+  if (state.global.pushesEnabled) {
+    return batchActions([
+      disablePush(),
+      setCurrentStoryIndex(storyIndex),
+      itemMarkRead(storyIndex), //TODO: change this api...
+      NavigationActions.push('root', Router.getRoute('storyReader'))
+    ])
+  }
+  return {type:'nop'}
 }
 
 export default poop = () => {

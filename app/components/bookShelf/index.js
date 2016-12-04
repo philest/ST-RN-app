@@ -6,9 +6,12 @@ import STListView               from './ListView'
 
 import { pushStorySplashPage }      from 'app/composedActions'
 
+import { View, Text } from 'react-native'
+
+import Header from './BookShelfHeader'
+
 // this is an incredibly dumb hack to make the grid look nice
 const _pushDummies = (arr) => [...arr, {dummy:true}, {dummy:true}]
-
 
 export const BookShelf = ({visibleBooks, displayFormat, navigation, dispatch}) => {
   if (displayFormat == 'grid') return (
@@ -16,6 +19,7 @@ export const BookShelf = ({visibleBooks, displayFormat, navigation, dispatch}) =
       items={ _pushDummies(visibleBooks) }
       itemsPerRow={ 2 }
       onPress={ (storyIndex) => dispatch(pushStorySplashPage(storyIndex)) }
+      renderHeader={()=><Header />}
     />
   )
   else return (

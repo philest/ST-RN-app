@@ -47,6 +47,7 @@ export default class CollectionView extends Component {
       return null
     }
 
+
     renderGroup(group) {
 
       const itemsPerRow = this.props.itemsPerRow

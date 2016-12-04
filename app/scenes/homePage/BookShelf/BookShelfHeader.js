@@ -28,10 +28,10 @@ export default class BookShelfPageHeader extends Component {
               from Ms. Stobierski
             </Text>
           </View>
-          <LinearGradient
+          {/* <LinearGradient
             colors={['white', 'rgba(1,1,1,0)']}
             style={{height:GRADIENT_HEIGHT}}>
-          </LinearGradient>
+          </LinearGradient> */}
         </View>
       </View>
     )

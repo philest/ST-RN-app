@@ -8,8 +8,9 @@ import GridItem from './components/GridItem'
 
 const { width, height } = Dimensions.get('window')
 
-export default STGridView = ({items, itemsPerRow, onPress}) => (
+export default STGridView = ({items, itemsPerRow, onPress, renderHeader}) => (
   <GridView
+    renderHeader={ renderHeader }
     items={ items }
     itemsPerRow={itemsPerRow}
     style={styles.gridView}
