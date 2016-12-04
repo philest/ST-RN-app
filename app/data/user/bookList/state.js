@@ -105,8 +105,14 @@ export const bookListArray =  [
       timeLastOpened: 0,
       bubbles: {
         2: [
-          { x: 0.5, y:0.5, text: "Hey this is a thing" },
-          { x: 0.1, y:0.3, text: "Sup boo."}
+          { x: 0.15, y:0.55, text: "What will the ant do?"}
+        ],
+        3: [
+          { x: 0.8, y:0.3, text: "Where do the ants live?"}
+        ],
+        6: [
+          { x: 0.8, y:0.8, text: "Who left cake on the floor?"},
+          { x: 0.8, y:0.2, text: "Dang, these ants are strong."}
         ],
       }
     },

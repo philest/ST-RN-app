@@ -12,7 +12,7 @@ export default class CanvasBubble extends Component {
     const imgWidth  = this.props.imgWidth
     const xpos = imgWidth * this.props.x
     const ypos = imgWidth * this.props.y
-
+      
 
     if (imgHeight && imgWidth) {
       return <View style={[styles.canvasBubble, {top:ypos, left:xpos}]}>

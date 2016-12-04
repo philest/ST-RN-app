@@ -39,10 +39,11 @@ export class UnconnectedReadingSuggestion extends Component {
         }}
         captureGestures={false}
         tweenDuration={100}
-        panThreshold={0.08}
+        panThreshold={0.1}
         disabled={this.props.disabled}
         openDrawerOffset={0.9}
         panOpenMask={0.05}
+        panCloseMaks={1}
         panMode={'open'}
         negotiatePan
         acceptDoubleTap
@@ -56,11 +57,15 @@ export class UnconnectedReadingSuggestion extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.95)'
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    justifyContent: 'center',
+    alignItems:'center'
   },
   txt: {
-    fontSize: 20,
-    color: 'white'
+    fontSize: 25,
+    color: 'white',
+    textAlign: 'center',
+    fontFamily:'Karla-Regular'
   }
 })
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
 
-
+import { hideBackBarAndUnselectBubble } from 'app/composedActions'
 
 export class QuestionBubble extends Component {
 
@@ -13,26 +13,28 @@ export class QuestionBubble extends Component {
   }
 
   isMe(selectedBubble) {
-    if (selectedBubble===this) {
-      return `rgba(100,0,120,0.3)`
-    }
-    return `rgba(100,0,120,0)`
+    return (selectedBubble===this)
   }
 
   onPress (func) {
+    if (this.isMe(this.props.selectedBubble)) {
+      this.props.dispatch(hideBackBarAndUnselectBubble())
+      return
+    }
+
     this.props.dispatch(func(this.props.text, this))
   }
 
   render () {
     const glowbump        = 15
-    const bubbleWidth     = this.props.width || 70
-    const bubbleHeight    = this.props.height || 70
+    const bubbleWidth     = this.props.width || 60
+    const bubbleHeight    = this.props.height || 60
     const bubbleRadius    = bubbleHeight/2                    // TODO add vert/horiz radius when needed
     const containerWidth  = bubbleWidth + glowbump
     const containerHeight = bubbleHeight + glowbump
     const containerRadius = containerHeight/2
 
-    glowAlpha = this.isMe(this.props.selectedBubble)
+    glowAlpha = (this.isMe(this.props.selectedBubble)) ? `rgba(255,255,255,0.5)` : `rgba(255,255,255,0)`
     return (
       <TouchableWithoutFeedback style={{width:containerWidth, height:containerHeight}} onPress={()=>this.onPress(this.props.onPress)}>
         <View style={[styles.glow, {backgroundColor: glowAlpha, borderRadius:containerRadius, width:containerWidth, height:containerHeight,}]}>
