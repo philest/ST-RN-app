@@ -67,7 +67,7 @@ class HomePage extends Component {
   render () {
     const MAGIC_NUMBER = 24
     return (
-        <ViewPagerAndroid
+        <ViewPager
           ref={this.props.setPager}
           style={{flex:1, marginBottom:MAGIC_NUMBER}}
           initialPage={this.state.initPage}
@@ -77,11 +77,11 @@ class HomePage extends Component {
             {/* <Image source={require('image!bird_spine')}/> */}
             <BookShelf/>
           </View>
-          <View style={{flex:1}}>
-            <Messages/>
-          </View>
-          <View style={{flex:1, backgroundColor:'black'}}></View>
-        </ViewPagerAndroid>
+            <View style={{flex:1}}>
+              <Messages/>
+              <View style={{flex:1, backgroundColor:'black'}}></View>
+            </View>
+        </ViewPager>
     )
   }
 }
@@ -94,7 +94,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   updateHomePageIndex: (e) => {
-    dispatch(setHomePageIndex(e.nativeEvent.position))
+    dispatch(setHomePageIndex(e.position))
   },
   setPager: (pager) => {
     dispatch(setPagerRef(pager))

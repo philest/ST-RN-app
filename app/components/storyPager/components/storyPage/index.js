@@ -8,9 +8,10 @@ import {
   ListView,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Image
 } from 'react-native'
 
-import Image from 'react-native-image-progress'
+// import Image from 'react-native-image-progress'
 
 var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
 import CanvasAwareBubble from '../canvasBubble'

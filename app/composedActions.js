@@ -1,5 +1,5 @@
 import Router from 'app/router'
-import { batchActions }         from 'redux-batched-actions'
+import { batchActions }         from 'app/vendor/redux-batched-actions/lib'
 import { NavigationActions }    from '@exponent/ex-navigation'
 
 import {

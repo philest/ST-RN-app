@@ -1,7 +1,7 @@
 // tab router
 import { createNavigationEnabledStore, NavigationReducer } from '@exponent/ex-navigation';
 import { combineReducers, createStore } from 'redux';
-import { enableBatching }  from 'redux-batched-actions'
+import { enableBatching }  from 'app/vendor/redux-batched-actions/lib'
 
 const createStoreWithNavigation = createNavigationEnabledStore({
   createStore,
