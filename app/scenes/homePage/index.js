@@ -69,7 +69,7 @@ class HomePage extends Component {
     return (
         <ViewPager
           ref={this.props.setPager}
-          style={{flex:1, marginBottom:MAGIC_NUMBER}}
+          style={{flex:1}}
           initialPage={this.state.initPage}
           keyboardDismissMode='on-drag'
           onPageSelected={this.props.updateHomePageIndex}>
@@ -79,7 +79,6 @@ class HomePage extends Component {
           </View>
             <View style={{flex:1}}>
               <Messages/>
-              <View style={{flex:1, backgroundColor:'black'}}></View>
             </View>
         </ViewPager>
     )

@@ -93,8 +93,7 @@ export default class App extends Component {
         <NavigationProvider context={navigationContext}>
           <StatusBar hidden={false} />
           <PushController />
-          <Drawer>
-            <View style={{flex:1, height:this.state.visibleHeight}}>
+            <View style={{flex:1, height:this.state.visibleHeight, maxHeight:this.state.visibleHeight}}>
               <StackNavigation
                 navigatorUID='root'
                 initialRoute={Router.getRoute('home')}
@@ -109,7 +108,6 @@ export default class App extends Component {
                 // onTransitionEnd={()=>alert('done')}
               />
             </View>
-          </Drawer>
         </NavigationProvider>
       </Provider>
     )

@@ -26,30 +26,27 @@ export default class BookShelfVisual extends Component {
     return (
       <View style={[styles.container, {height:SHELF_THICKNESS-STUB_Y+STUB_OFFSET}]}>
         <View style={{flexDirection:'column'}}>
-          <View style={[styles.shelfBase1, {flex:1, height:SHELF_THICKNESS/4}]}/>
-          <View style={[styles.shelfBase2, {flex:1, height:SHELF_THICKNESS/2}]}/>
+          <View style={[styles.shelfBase, {height:SHELF_THICKNESS/4, backgroundColor: BROWN,}]}/>
+          <View style={[styles.shelfBase, {height:SHELF_THICKNESS/2, backgroundColor: DARK_BROWN}]}/>
         </View>
-        <Knob style={{position:'absolute', top:STUB_OFFSET, left:20}}/>
-        <Knob style={{position:'absolute', top:STUB_OFFSET, right:20}}/>
+        <Knob style={[styles.knob, {left:20}]}/>
+        <Knob style={[styles.knob, {right:20}]}/>
       </View>
     )
   }
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     position:'absolute',
     left:20,
     bottom:SPACE_BETWEEN_SHELVES - SHELF_THICKNESS/2,
   },
-  shelfBase1: {
-    backgroundColor: BROWN,
+  shelfBase: {
     width:300,
-    height:20,
   },
-  shelfBase2: {
-    backgroundColor: DARK_BROWN,
-    width:300,
-    height:20,
+  knob: {
+    position:'absolute',
+    top:STUB_OFFSET,
   }
 })

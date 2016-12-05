@@ -35,7 +35,7 @@ class ReaderContainer extends Component {
   componentDidMount () {
     this.setTimeout(
       () => this.setState({ statusBarHide: true }),
-      1500
+      100
     )
   }
 
