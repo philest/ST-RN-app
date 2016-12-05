@@ -19,7 +19,8 @@ export default Header = ({teacherName}) => {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingBottom:17,
+    paddingTop: 13,
+    paddingBottom:30,
     alignItems:'center',
     justifyContent:'center'
   },

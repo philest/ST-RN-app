@@ -15,8 +15,8 @@ const STUB_Y= 10
 const STUB_X= 15
 const STUB_OFFSET = 10
 
-const BROWN = '#80461B'
-const DARK_BROWN = '#6B4423'
+const BROWN = '#9c6a3d'
+const DARK_BROWN = '#774c29'
 
 const Knob = ({style}) => (<View style={[{ width:STUB_X, height:STUB_Y, marginBottom:STUB_OFFSET,backgroundColor:DARK_BROWN}, style]}/>)
 

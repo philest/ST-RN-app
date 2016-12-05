@@ -4,7 +4,6 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 const border = (color='blue', size=2) => {return {borderColor:color, borderWidth:size}}
 
 
-export const SPACE_BETWEEN_SHELVES = 40
 
 
 // TODO: do something about image rendering at some point...
@@ -18,8 +17,10 @@ const renderNew = (timeFirstRead) => {
 }
 
 const itemBuffer = 8
-const thumbHeightBump = 38
-const imgBump = 35
+const thumbHeightBump = 35
+
+const imgBump = 30
+export const SPACE_BETWEEN_SHELVES = 32
 
 const renderLeft = (index, itemsPerRow) => {
   return !(index % itemsPerRow) ? 10 : 0;
@@ -38,7 +39,7 @@ const alignment = (index, numItems, itemsPerRow) => {
 }
 
 export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, onPress, index, numItems}) => {
-  const imgWidth = rowItemWidth*.9
+  const imgWidth = rowItemWidth*.8
   return (
     <View style={[styles.rowContainer, {alignItems:alignment(index,numItems,2), height:imgWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
       <View  style={[styles.thumbContainer, { width:imgWidth-itemBuffer, height:imgWidth+thumbHeightBump}]} >

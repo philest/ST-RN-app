@@ -18,7 +18,7 @@ import ReaderModal from 'app/components/storyPager'
 class ReaderContainer extends Component {
   static route = {
     styles: {
-      ...NavigationStyles.SlideHorizontal,
+      ...NavigationStyles.Fade,
     },
     navigationBar: {
       visible: false
@@ -35,14 +35,14 @@ class ReaderContainer extends Component {
   componentDidMount () {
     this.setTimeout(
       () => this.setState({ statusBarHide: true }),
-      500
+      1500
     )
   }
 
   render () {
     return <View>
       <ReaderModal backAction={()=>this.props.dispatch(NavigationActions.pop('root'))}/>
-      {/* <StatusBar hidden={this.state.statusBarHide} /> */}
+      <StatusBar hidden={this.state.statusBarHide} />
     </View>
   }
 }

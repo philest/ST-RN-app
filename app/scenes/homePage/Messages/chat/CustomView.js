@@ -27,10 +27,12 @@ export default class CustomView extends Component {
           <View style={{marginTop:12, marginBottom:15, alignItems:'center'}}>
             <View style={{transform:[{rotateZ:'-5deg'}]}}>
               <TouchableOpacity onPress={()=>store.dispatch(pushStorySplashPage(sindex))}>
-              <Image resizeMode='contain' style={{width:200, height:200}} source={newStorySrc} />
+                <Image resizeMode='contain' style={{width:200, height:200}} source={newStorySrc} />
               </TouchableOpacity>
             </View>
-            <Text style={{color:'black', fontSize:20, left: 5, top:10}}> Tap to read! </Text>
+            <TouchableOpacity style={{flex:1, top:10}}onPress={()=>store.dispatch(pushStorySplashPage(sindex))}>
+            <Text style={{color:'black', fontSize:20, left: 5}}> Tap to read! </Text>
+            </TouchableOpacity>
           </View>
         </View>
       )

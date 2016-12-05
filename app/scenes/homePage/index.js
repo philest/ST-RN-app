@@ -51,7 +51,7 @@ class HomePage extends Component {
 
   static route = {
     navigationBar: {
-      renderTitle: ()=> <BimodalTitle titles={['Class Library', 'Ms. Stobiergski']} />,
+      renderTitle: ()=> <BimodalTitle titles={['Class Library', 'Ms. Stobierski']} />,
       renderRight: ()=> <BimodalButton position='right' buttons={rightButtons} />,
       renderLeft:  ()=> <BimodalButton position='left' buttons={leftButtons} />,
     },
@@ -80,6 +80,7 @@ class HomePage extends Component {
           <View style={{flex:1}}>
             <Messages/>
           </View>
+          <View style={{flex:1, backgroundColor:'black'}}></View>
         </ViewPagerAndroid>
     )
   }

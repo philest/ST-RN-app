@@ -28,7 +28,7 @@ const dims = sizeOf(ORIGINAL_IMG)
 
 const VSPINE_ANGLE = '45'
 const VSPINE_HEIGHT = dims.height
-const VSPINE_WIDTH = dims.width*.07
+const VSPINE_WIDTH = dims.width*.05
 const WEDGE_HEIGHT = Math.tan(VSPINE_ANGLE*Math.PI/180)*VSPINE_WIDTH
 
 const IMG_HEIGHT = (WEDGE_HEIGHT)+dims.height

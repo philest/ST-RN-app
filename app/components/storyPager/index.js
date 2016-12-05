@@ -86,7 +86,6 @@ class StoryPager extends Component {
     const info = this.props.storyInfo
     return(
       <View>
-        <StatusBar hidden={true} />
         <Swiper
           index               = { this.props.savedPageNum || 0 }
           style               = { styles.swiper }

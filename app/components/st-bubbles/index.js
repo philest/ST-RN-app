@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   bubble: {
-    backgroundColor: '#FF9914',
+    backgroundColor: '#ed7a44',
     alignSelf:'center',
     justifyContent: 'center',
     alignItems: 'center'
