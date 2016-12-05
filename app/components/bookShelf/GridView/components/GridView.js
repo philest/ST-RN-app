@@ -78,7 +78,7 @@ export default class CollectionView extends Component {
 };
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   group: {
     flexDirection: 'row',
     alignItems: 'center',

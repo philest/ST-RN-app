@@ -70,7 +70,7 @@ export default class extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   navBarContainer: {
     position: 'absolute',
     top: 0,

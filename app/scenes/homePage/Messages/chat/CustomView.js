@@ -23,8 +23,8 @@ export default class CustomView extends Component {
       const s = bookListArray[sindex]
       const newStorySrc = {uri:`${s.awsKey}_spine`}
       return (
-        <View style={{backgroundColor:'white'}}>
-          <View style={{marginTop:12, marginBottom:15, alignItems:'center'}}>
+        <View style={{backgroundColor:'white',  height:260}}>
+          <View style={{flex:1, marginTop:12, marginBottom:15, alignItems:'center'}}>
             <View style={{transform:[{rotateZ:'-5deg'}]}}>
               <TouchableOpacity onPress={()=>store.dispatch(pushStorySplashPage(sindex))}>
                 <Image resizeMode='contain' style={{width:200, height:200}} source={newStorySrc} />

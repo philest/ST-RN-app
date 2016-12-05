@@ -1,25 +1,16 @@
-import React from 'react'
+import React from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-} from 'react-native'
+} from 'react-native';
 
-import Harlene from './data/Harlene'
-
-import { GiftedChat, Actions, Bubble, Avatar} from 'react-native-gifted-chat';
-// import CustomActions from './CustomActions'
-import CustomView from './CustomView'
-import CustomBubble from './CustomBubble'
-import CustomDay from './CustomDay'
-import CustomMessageText from './CustomMessageText'
-
-import STText from 'app/components/STText'
+import {GiftedChat, Actions, Bubble} from 'react-native-gifted-chat';
+// import CustomActions from './CustomActions';
+import CustomView from './CustomView';
 
 export default class Example extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +18,7 @@ export default class Example extends React.Component {
       loadEarlier: true,
       typingText: null,
       isLoadingEarlier: false,
-    }
+    };
 
     this._isMounted = false;
     this.onSend = this.onSend.bind(this);
@@ -35,8 +26,8 @@ export default class Example extends React.Component {
     this.renderCustomActions = this.renderCustomActions.bind(this);
     this.renderBubble = this.renderBubble.bind(this);
     this.renderFooter = this.renderFooter.bind(this);
-    this.renderAvatar = this.renderAvatar.bind(this)
     this.onLoadEarlier = this.onLoadEarlier.bind(this);
+
     this._isAlright = null;
   }
 
@@ -45,8 +36,8 @@ export default class Example extends React.Component {
     this.setState(() => {
       return {
         messages: require('./data/messages.js'),
-      }
-    })
+      };
+    });
   }
 
   componentWillUnmount() {
@@ -57,8 +48,8 @@ export default class Example extends React.Component {
     this.setState((previousState) => {
       return {
         isLoadingEarlier: true,
-      }
-    })
+      };
+    });
 
     setTimeout(() => {
       if (this._isMounted === true) {
@@ -67,8 +58,8 @@ export default class Example extends React.Component {
             messages: GiftedChat.prepend(previousState.messages, require('./data/old_messages.js')),
             loadEarlier: false,
             isLoadingEarlier: false,
-          }
-        })
+          };
+        });
       }
     }, 1000); // simulating network
   }
@@ -77,8 +68,8 @@ export default class Example extends React.Component {
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),
-      }
-    })
+      };
+    });
 
     // for demo purpose
     this.answerDemo(messages);
@@ -89,9 +80,9 @@ export default class Example extends React.Component {
       if ((messages[0].image || messages[0].location) || !this._isAlright) {
         this.setState((previousState) => {
           return {
-            typingText: 'Ms. Stobierski is typing'
-          }
-        })
+            typingText: 'React Native is typing'
+          };
+        });
       }
     }
 
@@ -114,9 +105,9 @@ export default class Example extends React.Component {
       this.setState((previousState) => {
         return {
           typingText: null,
-        }
-      })
-    }, 1000)
+        };
+      });
+    }, 1000);
   }
 
   onReceive(text) {
@@ -128,39 +119,50 @@ export default class Example extends React.Component {
           createdAt: new Date(),
           user: {
             _id: 2,
-            name: 'Ms. Stobierski',
-            avatar: Harlene,
+            name: 'React Native',
+            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
           },
         }),
-      }
-    })
+      };
+    });
   }
 
   renderCustomActions(props) {
-
+    if (Platform.OS === 'ios') {
+      return (
+        <CustomActions
+          {...props}
+        />
+      );
+    }
     const options = {
-      'Get New Story': (props) => {
-
+      'Action 1': (props) => {
+        alert('option 1');
       },
-      'Reset': (props) => {
-
+      'Action 2': (props) => {
+        alert('option 2');
       },
       'Cancel': () => {},
-    }
+    };
     return (
       <Actions
         {...props}
         options={options}
       />
-    )
+    );
   }
 
   renderBubble(props) {
     return (
-      <CustomBubble
+      <Bubble
         {...props}
+        wrapperStyle={{
+          left: {
+            backgroundColor: '#f0f0f0',
+          }
+        }}
       />
-    )
+    );
   }
 
   renderCustomView(props) {
@@ -168,17 +170,8 @@ export default class Example extends React.Component {
       <CustomView
         {...props}
       />
-    )
+    );
   }
-
-  renderDay (props) {
-    return (
-      <CustomDay
-        {...props}
-      />
-    )
-  }
-
 
   renderFooter(props) {
     if (this.state.typingText) {
@@ -188,52 +181,29 @@ export default class Example extends React.Component {
             {this.state.typingText}
           </Text>
         </View>
-      )
+      );
     }
     return null;
   }
 
-  renderAvatar(props) {
-    if (props.currentMessage.newStory) {
-      return null
-    }
-    modProps = {...props, containerStyle:{flex:1, 'backgroundColor':'red', marginRight:50}}
-    return <View style={{flex:1, backgroundColor:'red'}}>
-     <Avatar {...props}/>
-    </View>
-  }
-
-  renderMessageText(props) {
-    return <CustomMessageText {...props} />
-  }
-
-  renderAvatar() {
-    return null
-  }
-
   render() {
     return (
-      <View style={{flex:1}}>
-        <GiftedChat
-        style={{flex:1, backgroundColor:'red'}}
+      <GiftedChat
         messages={this.state.messages}
         onSend={this.onSend}
         loadEarlier={this.state.loadEarlier}
         onLoadEarlier={this.onLoadEarlier}
         isLoadingEarlier={this.state.isLoadingEarlier}
+
         user={{
           _id: 1, // sent messages should have same user._id
         }}
-        renderActions={this.renderCustomActions}
+
+        // renderActions={this.renderCustomActions}
         renderBubble={this.renderBubble}
         renderCustomView={this.renderCustomView}
         renderFooter={this.renderFooter}
-        renderAvatar={this.renderAvatar}
-        renderMessageText={this.renderMessageText}
-        renderDay={this.renderDay}
-        isAnimated={false}
-        />
-      </View>
+      />
     );
   }
 }

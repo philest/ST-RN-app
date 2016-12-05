@@ -10,33 +10,31 @@ import {
 
 import STText from 'app/components/STText'
 
-import { Bubble, Time} from 'react-native-gifted-chat';
-
-import GiftedAvatar from 'react-native-gifted-chat/src/GiftedAvatar'
+import { Time} from 'react-native-gifted-chat';
+import Bubble from './WeirdBubble'
 
 export default class CustomBubble extends Component {
 
-  renderAvatar(props) {
-    const position = props.position
-
-    // TODO write a unit test for this behavior!!!!
-    if (props.currentMessage.newStory || position=='right') {
-      return null
-    }
-    const user = props.currentMessage.user
-    return (
-      <View style={{ flex:1, marginRight:20, flexDirection:'row', alignItems:'center'}}>
-        <GiftedAvatar
-          avatarStyle={[styles[position].image]}
-          user={user}
-        />
-        <View>
-          <STText style={{fontSize:18, color:'black'}}> {user.name} </STText>
-        </View>
-      </View>
-    )
-
-  }
+  // renderAvatar(props) {
+  //   const position = props.position
+  //
+  //   // TODO write a unit test for this behavior!!!!
+  //   if (props.currentMessage.newStory || position=='right') {
+  //     return null
+  //   }
+  //   const user = props.currentMessage.user
+  //   return (
+  //     <View style={{ flex:1, marginRight:20, flexDirection:'row', alignItems:'center'}}>
+  //       <GiftedAvatar
+  //         avatarStyle={[styles[position].image]}
+  //         user={user}
+  //       />
+  //       <View>
+  //         <STText style={{fontSize:18, color:'black'}}> {user.name} </STText>
+  //       </View>
+  //     </View>
+  //   )
+  // }
 
 
   render() {
@@ -51,8 +49,6 @@ export default class CustomBubble extends Component {
 
 
     return (
-      <View style={{flex:1}}>
-        { this.renderAvatar(this.props) }
         <Bubble
           {...this.props}
           wrapperStyle={{
@@ -71,7 +67,6 @@ export default class CustomBubble extends Component {
           // jk, phil doesn't want the time at all
           renderTime={()=>false}
         />
-      </View>
     )
 
     return null
