@@ -7,6 +7,7 @@ ColorThief  = require('color-thief')
 program     = require('commander')
 onecolor    = require('onecolor')
 exec        = require('child_process').execSync
+const path = require('path');
 
 program
     .option('-s --svg', 'ouput an svg')
@@ -15,15 +16,20 @@ program
 colorThief = new ColorThief()
 
 const ORIGINAL_IMG = program.args[0];
-const SPINE_IMG   = `${ORIGINAL_IMG}.spine.jpg`
-
+const SPINE_IMG   = `./assets/${path.basename(ORIGINAL_IMG)}.spine.jpg`
+const FACE_IMG   = `./assets/${path.basename(ORIGINAL_IMG)}.face.jpg`
 
 // compute angles n such...
 const dims = sizeOf(ORIGINAL_IMG)
-const VSPINE_ANGLE = '45'
+const VSPINE_ANGLE = '50'
 const VSPINE_HEIGHT = dims.height
-const VSPINE_WIDTH = Math.round(dims.width*.05)
-const WEDGE_HEIGHT = Math.tan(VSPINE_ANGLE*Math.PI/180)*VSPINE_WIDTH
+const VSPINE_WIDTH = Math.round(dims.width*.04)
+const WEDGE_HEIGHT = Math.round(Math.tan(VSPINE_ANGLE*Math.PI/180)*VSPINE_WIDTH)
+
+// const CROP_WIDTH = Math.round(VSPINE_WIDTH*2)
+const CROP_WIDTH = 1
+
+const BUMP = CROP_WIDTH
 
 const IMG_HEIGHT = (WEDGE_HEIGHT)+dims.height
 const IMG_WIDTH = VSPINE_WIDTH+dims.width
@@ -33,15 +39,16 @@ const HSPINE_WIDTH  = dims.width
 
 
 // generate spine image pattern
-const CMD  = `convert ${ORIGINAL_IMG} -crop ${VSPINE_WIDTH/2}x${dims.height}+0+0 ${SPINE_IMG}`
+const CMD  = `convert ${ORIGINAL_IMG} -crop ${CROP_WIDTH}x${dims.height}+0+0 ${SPINE_IMG}`
 exec(CMD)
-
+const CMD2 = `convert ${ORIGINAL_IMG} -crop ${IMG_WIDTH}x${dims.height}+${CROP_WIDTH}+0 ${FACE_IMG}`
+exec(CMD2)
 
 // read in image files
 const img = fs.readFileSync(ORIGINAL_IMG)
 const img_spine = fs.readFileSync(SPINE_IMG)
 
-const IMG_FILE =  `data:image/jpeg;base64,${img.toString('base64')}`;
+const FACE_FILE =  `data:image/jpeg;base64,${img.toString('base64')}`;
 const SPINE_FILE =`data:image/jpeg;base64,${img_spine.toString('base64')}`;
 
 
@@ -49,8 +56,6 @@ const SPINE_FILE =`data:image/jpeg;base64,${img_spine.toString('base64')}`;
 // const rgb = colorThief.getColor(img)
 // const rgbCode = 'rgb( ' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ')'; // 'rgb(r, g, b)'
 // const SPINE_COLOR = onecolor(onecolor(rgbCode).hex()).lightness(+.4).hex()
-
-
 
 
 const mydiv = `<div style="color: white;">${VSPINE_WIDTH}x${VSPINE_HEIGHT} with wedge ${WEDGE_HEIGHT}</div>`
@@ -61,7 +66,7 @@ jsdom.env(
                 ${mydiv}
                 <div>
                     <div style="background-color:pink; top:0; left:0; position:'absolute'; height:${IMG_HEIGHT}; width:${IMG_WIDTH}">
-                    <div id=\"myid\"></div>
+                    <div style="padding-left:20;"id=\"myid\"></div>
 
                     </div>
 
@@ -90,7 +95,7 @@ jsdom.env(
             .attr('patternUnits','userSpaceOnUse')
             .attr('width',`${VSPINE_WIDTH}`)
             .attr('height', `${VSPINE_HEIGHT}`)
-            .attr('patternTransform','scale(-1,1)')
+            // .attr('patternTransform','scale(-1,1)')
             .attr('id', 'spinepattern')
             .append('image')
               .attr("x", 0)
@@ -112,7 +117,7 @@ jsdom.env(
         .style("fill", '000000'); // uncomment if you want to fill with color avg
 
     g2.append("rect")
-        .attr("style","opacity:0.7;fill:url(#spinepattern);fill-opacity:1;fill-rule:nonzero;")
+        .attr("style","opacity:0.6;fill:url(#spinepattern);fill-opacity:1;fill-rule:nonzero;")
         .attr("id", "spine")
         .attr("width", `${VSPINE_WIDTH}`)
         .attr("height",`${VSPINE_HEIGHT}`)
@@ -136,7 +141,7 @@ jsdom.env(
          .attr("x", `${VSPINE_WIDTH}`)
          .attr("y", 0)
          .attr("id",'poop')
-         .attr("xlink:href", `${IMG_FILE}`)
+         .attr("xlink:href", `${FACE_FILE}`)
          .attr("preserveAspectRatio","none")
          .attr("style","image-rendering:optimizeQuality")
          .attr("width", `${dims.width}`)
