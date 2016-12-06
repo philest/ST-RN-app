@@ -13,7 +13,7 @@ npm install --save redux-batched-actions
 
 ```js
 import {createStore} from 'redux';
-import {batchActions, enableBatching} from 'redux-batched-actions';
+import {batchActions, enableBatching} from 'app/vendor/redux-batched-actions/lib';
 import {createAction} from 'redux-actions';
 
 const doThing = createAction('DO_THING')

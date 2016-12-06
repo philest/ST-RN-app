@@ -1,4 +1,4 @@
-import { batchActions } from 'redux-batched-actions'
+import { batchActions } from 'app/vendor/redux-batched-actions/lib'
 
 import { itemReveal, itemMarkRead } from 'app/data/user/bookList/bookListActions'
 import { setCurrentStoryIndex } from 'app/components/bookShelf/state'

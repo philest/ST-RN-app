@@ -64,7 +64,7 @@ export default class StoryPager extends Component {
               indicatorProps = {{ size: 80, color: 'pink', style: { backgroundColor:'black' }}}
               resizeMode     =  'contain'
               style          = { styles.img }
-              threshold      = { 200 }
+              threshold      = { 1200 }
               onLayout       = { this._setImgDims }
               //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
             />

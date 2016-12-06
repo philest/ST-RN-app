@@ -43,23 +43,19 @@ export default class extends Component {
     var navBarStyle = {
         height: this.state.heightValue,
         overflow: 'hidden',
-      };
+      }
 
     return (
       <Animated.View style={[styles.navBarContainer, navBarStyle, this.props.style]}>
         <View style={styles.innerContainer}>
-
           <TouchableOpacity style={styles.buttonContainer} onPress={this.props.onPress}>
-            <View >
-              <Icon name='ios-arrow-back' size={30} color='white'/>
-            </View>
+            <View> <Icon name='ios-arrow-back' size={30} color='white'/> </View>
           </TouchableOpacity>
 
           <Text style={styles.titleText}> { this.props.text } </Text>
-
         </View>
       </Animated.View>
-    );
+    )
   }
 
   _shouldHideNavBar() {
