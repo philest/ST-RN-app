@@ -48,4 +48,4 @@ generate_spines/original
 generate_spines/output_img*
 generate_spines/node_modules
 app/assets/img/spines
-android/app/src/main/res/drawable
+android/app/src/main/res/drawable*
