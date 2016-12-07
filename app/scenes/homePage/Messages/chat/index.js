@@ -16,7 +16,7 @@ import CustomBubble from './CustomBubble'
 import CustomDay from './CustomDay'
 import CustomMessageText from './CustomMessageText'
 
-import STText from 'app/components/STText'
+import STText from 'app/assets/font/STText'
 
 export default class Example extends React.Component {
 

@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ViewPagerAndroid
 } from 'react-native';
-import STText from 'app/components/STText'
+import STText from 'app/assets/font/STText'
 import { connect } from 'react-redux'
 
 const QuestionMark =  <View><STText>?</STText></View>

@@ -14,18 +14,16 @@ https://github.com/exponentjs/ex-navigator/issues/6#issuecomment-186581820 */
 
 var COMPONENT_NAMES = ['Title', 'LeftButton', 'RightButton'];
 
-const TotalNavHeight = 60
 
-const TEXT_PADDING = 15
 const CENTER_PADDING = 10
 
 export default class extends Component {
-  constructor(props: any) {
-    super(props);
+  constructor(props) {
+    super(props)
     this._shouldHideNavBar = this._shouldHideNavBar.bind(this);
     this.state = {
       heightValue: new Animated.Value(
-        this.props.hideNavBar ? 0 : TotalNavHeight  // do for animation-indication flair :)
+        this.props.hideNavBar ? 0 : this.props.openHeight  // do for animation-indication flair :)
       ),
     }
   }
@@ -39,7 +37,7 @@ export default class extends Component {
   }
 
 
-  render(): View {
+  render() {
     var navBarStyle = {
         height: this.state.heightValue,
         overflow: 'hidden',
@@ -48,15 +46,7 @@ export default class extends Component {
     return (
       <Animated.View style={[styles.navBarContainer, navBarStyle, this.props.style]}>
         <View style={styles.innerContainer}>
-
-          <TouchableOpacity style={styles.buttonContainer} onPress={this.props.onPress}>
-            <View >
-              <Icon name='ios-arrow-back' size={30} color='white'/>
-            </View>
-          </TouchableOpacity>
-
-          <Text style={styles.titleText}> { this.props.text } </Text>
-
+          { this.props.children }
         </View>
       </Animated.View>
     );
@@ -65,7 +55,7 @@ export default class extends Component {
   _shouldHideNavBar() {
     Animated.timing(this.state.heightValue, {
       duration: 100,
-      toValue: !this.props.hideNavBar ? TotalNavHeight : 0,
+      toValue: !this.props.hideNavBar ? this.props.openHeight : 0,
     }).start();
   }
 }
@@ -80,23 +70,9 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flexDirection: 'row',
-    backgroundColor:'rgba(0,0,0,.8)',
+    backgroundColor:'rgba(0,0,0,0.8)',
     flex:1,
     alignItems:'center',
     paddingLeft: CENTER_PADDING
-  },
-  buttonContainer: {
-    height:TotalNavHeight,
-    width:TotalNavHeight/2,
-    paddingTop:TEXT_PADDING+8,
-  },
-  titleText: {
-    flex:1,
-    color:'white',
-    fontSize:30,
-    fontFamily: "Karla-Regular",
-    textAlign:'center',
-    paddingRight: CENTER_PADDING+5,
-    paddingTop:TEXT_PADDING-3,
   }
-});
+})

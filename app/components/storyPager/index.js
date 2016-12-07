@@ -13,41 +13,23 @@ import {
 import { connect } from 'react-redux'
 import _ from 'lodash' // TODO: get this outta here?
 
-
+// components
 import Swiper from 'app/vendor/react-native-swiper'
-import BackBar from './BackNav'
-
-import { setCurrentIndex, showBackBar, hideBackBar } from './state'
-import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion/state'
-import { setSelectedBubble } from 'app/components/st-bubbles/state'
-import { hideBackBarAndUnselectBubble} from 'app/composedActions'
-
-
+import AlertBar from './components/alertBar'
 import StoryPage from './components/storyPage'
+
+// actions
+import { setCurrentIndex } from './state'
+import { closeDrawer } from 'app/components/readingSuggestion/state'
+import { hideBackBarAndUnselectBubble} from 'app/composedActions'
 
 class StoryPager extends Component {
 
   constructor (props) {
     super(props)
-
-    this._toggleNav = this._toggleNav.bind(this)
     this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this)
     this._onScrollBeginDrag = this._onScrollBeginDrag.bind(this)
 
-  }
-
-
-  _toggleNav () {
-    if (this.props.backBarHidden) {
-      if (!this.props.currentBubble){
-        this.props.dispatch(showBackBar())
-      } else {
-        this.props.dispatch(setSelectedBubble(null))
-      }
-      this.props.dispatch(closeDrawer())
-      return
-    }
-    this.props.dispatch(hideBackBarAndUnselectBubble())
   }
 
   _onMomentumScrollEnd(e, state, context) {
@@ -63,11 +45,9 @@ class StoryPager extends Component {
     this.props.dispatch(hideBackBarAndUnselectBubble())
   }
 
-
   componentDidMount() {
     // TODO: write a damn test for this
     this.props.dispatch(setCurrentIndex(0));
-    this.props.dispatch(enableDrawer())
   }
 
   componentWillUnmount () {
@@ -77,7 +57,7 @@ class StoryPager extends Component {
 
   _renderPages (pages) {
     return pages.map((p, i) => {
-      return <StoryPage key={i} pageInfo={p} onTouchPage={this._toggleNav}/>
+      return <StoryPage key={i} pageInfo={p}/>
     })
   }
 
@@ -96,7 +76,7 @@ class StoryPager extends Component {
         >
           { this._renderPages( info.pagesToRender ) }
         </Swiper>
-        <BackBar hideNavBar={this.props.backBarHidden} text={ info.title } onPress={this.props.backAction}/>
+        <AlertBar titleText={info.title} onPress={this.props.backAction }/>
       </View>
     )
   }
@@ -134,8 +114,6 @@ const storyInfo = (book, storyIndex) => {
 const mapStateToProps = (state) => ({
   storyInfo: storyInfo(state.data.user.bookList[state.components.bookShelf.currentStoryIndex], state.components.bookShelf.currentStoryIndex),
   currentIndex: state.components.storyPager.currentIndex,
-  backBarHidden: !state.components.storyPager.backBarEnabled,
-  currentBubble: state.components.stBubbles.selectedBubble
 })
 
 export default connect(mapStateToProps)(StoryPager)

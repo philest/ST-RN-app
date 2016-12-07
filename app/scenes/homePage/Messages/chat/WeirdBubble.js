@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 
-import STText from 'app/components/STText'
+import STText from 'app/assets/font/STText'
 
 import { MessageText, MessageImage, Time } from 'react-native-gifted-chat'
 

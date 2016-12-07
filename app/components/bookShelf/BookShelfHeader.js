@@ -1,7 +1,7 @@
 import React, { Component }     from 'react'
 import { View, StyleSheet } from 'react-native'
 
-import Text from 'app/components/STTextRegular'
+import Text from 'app/assets/font/STTextRegular'
 
 export default Header = ({teacherName}) => {
   return (

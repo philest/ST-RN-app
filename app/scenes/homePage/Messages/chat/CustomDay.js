@@ -9,7 +9,7 @@ import {
 
 import moment from 'moment/min/moment-with-locales.min';
 
-import STText from 'app/components/STTextRegular'
+import STText from 'app/assets/font/STTextRegular'
 
 import { Day } from 'react-native-gifted-chat';
 

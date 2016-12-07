@@ -10,15 +10,22 @@ import {
   TouchableWithoutFeedback,
   Image
 } from 'react-native'
-
 // import Image from 'react-native-image-progress'
+import { connect } from 'react-redux'
 
 var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
-import CanvasAwareBubble from '../canvasBubble'
 
+// components
+import CanvasAwareBubble from '../canvasBubble'
 import { setTextAndSelectBubble } from 'app/composedActions'
 
-export default class StoryPager extends Component {
+// actions
+import { setCurrentIndex, showBackBar, hideBackBar } from '../../state'
+import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion/state'
+import { setSelectedBubble } from 'app/components/st-bubbles/state'
+import { hideBackBarAndUnselectBubble} from 'app/composedActions'
+
+export class StoryPage extends Component {
 
   constructor (props) {
     super(props)
@@ -28,6 +35,7 @@ export default class StoryPager extends Component {
       imgHeight: 0
     }
 
+    this._toggleNav = this._toggleNav.bind(this)
     this._renderBubbles = this._renderBubbles.bind(this)
     this._setImgDims = this._setImgDims.bind(this)
 
@@ -54,11 +62,24 @@ export default class StoryPager extends Component {
   }
 
 
+  _toggleNav () {
+    if (this.props.backBarHidden) {
+      if (!this.props.currentBubble){
+        this.props.dispatch(showBackBar())
+      } else {
+        this.props.dispatch(setSelectedBubble(null))
+      }
+      this.props.dispatch(closeDrawer())
+      return
+    }
+    this.props.dispatch(hideBackBarAndUnselectBubble())
+  }
+
   render () {
     p = this.props.pageInfo
     return (
       <View  style={ styles.container } >
-        <TouchableWithoutFeedback  onPress={ this.props.onTouchPage }>
+        <TouchableWithoutFeedback  onPress={ this._toggleNav }>
           <View style={ styles.imgWrapper }>
             <Image
               source         = {{ uri: p.url }}
@@ -76,6 +97,13 @@ export default class StoryPager extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  backBarHidden: !state.components.storyPager.backBarEnabled,
+  currentBubble: state.components.stBubbles.selectedBubble,
+})
+
+export default connect(mapStateToProps)(StoryPage)
 
 const styles = StyleSheet.create({
   img: {

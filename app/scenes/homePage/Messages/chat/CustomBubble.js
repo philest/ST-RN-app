@@ -8,7 +8,7 @@ import {
   Image
 } from 'react-native'
 
-import STText from 'app/components/STText'
+import STText from 'app/assets/font/STText'
 
 import { Time} from 'react-native-gifted-chat';
 import Bubble from './WeirdBubble'

@@ -34,7 +34,6 @@ import {
 
 import { allowPush } from './reducer'
 
-import Drawer  from 'app/components/readingSuggestion'
 
 export default class App extends Component {
 
