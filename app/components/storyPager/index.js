@@ -119,6 +119,7 @@ const storyInfo = (book, storyIndex) => {
   const pagesToRender = _.times(numPages-offset, (i) => ({
     i,
     url:`https://s3.amazonaws.com/st-messenger/day1/${awsKey}/${awsKey}${i+1+offset}.jpg`,
+    coverDims: book.coverDims,
     bubbles: (book.bubbles) ? book.bubbles[i+1] : [] //TODO: test this...
   }))
   const storyInfo = {

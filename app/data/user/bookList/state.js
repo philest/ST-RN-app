@@ -73,6 +73,7 @@ export const bookListArray =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: Date.now(),
       timeLastOpened: 0,
+      coverDims: {x:266, y:309},
     },
     {
       title: "Rosie's Find",
@@ -83,6 +84,7 @@ export const bookListArray =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:333, y:495},
     },
     {
       title: "Baby Bird",
@@ -93,6 +95,7 @@ export const bookListArray =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:124, y:129},
     },
     {
       title: "The Ants!",
@@ -114,7 +117,8 @@ export const bookListArray =  [
           { x: 0.8, y:0.8, text: "Who left cake on the floor?"},
           { x: 0.8, y:0.2, text: "Dang, these ants are strong."}
         ],
-      }
+      },
+      coverDims: {x:333, y:495},
     },
     {
       title: "Sam's Spaceship",
@@ -125,6 +129,7 @@ export const bookListArray =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:624, y:631},
     },
     {
       title:'My Chores!',
@@ -135,6 +140,7 @@ export const bookListArray =  [
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:348, y:495},
     },
     {
       title: "Dream",
@@ -145,6 +151,7 @@ export const bookListArray =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:333, y:495},
     },
     {
       title: 'Kitty',
@@ -155,6 +162,7 @@ export const bookListArray =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:333, y:495},
     },
     {
       title: 'Magic Seed',
@@ -165,6 +173,7 @@ export const bookListArray =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:300, y:332},
     },
     {
       title: "Eli's Pets",
@@ -175,5 +184,6 @@ export const bookListArray =  [
       timeRevealedAt: 0,
       timeFirstRead: 0,
       timeLastOpened: 0,
+      coverDims: {x:333, y:495},
     },
   ]

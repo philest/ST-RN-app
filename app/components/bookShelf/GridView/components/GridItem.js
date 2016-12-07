@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 
 const border = (color='blue', size=2) => {return {borderColor:color, borderWidth:size}}
@@ -16,8 +16,13 @@ const renderNew = (timeFirstRead) => {
   )
 }
 
-const itemBuffer = 8
-const thumbHeightBump = 35
+const ITEM_BUFFER = 8
+const THUMB_HEIGHT_BUMP = 35
+
+const MAX_COVER_WIDTH = 120
+export const MAX_COVER_HEIGHT = 150
+
+const SPACE_BETWEEN_COVERS = 18
 
 const imgBump = 30
 export const SPACE_BETWEEN_SHELVES = 32
@@ -34,41 +39,88 @@ const renderRight = (index, itemsPerRow) => {
 
 // TODO: this only works for 2 items per row :)
 const alignment = (index, numItems, itemsPerRow) => {
-  return ((index + numItems) % itemsPerRow) ? 'flex-end' : 'flex-start';
-  // return ((index % itemsPerRow) == itemsPerRow-1) ? 0 : 30;
+  return ((index + numItems) % itemsPerRow) ? 'flex-end' : 'flex-start'
 }
 
-export default GridItem = ({title, timeFirstRead, imageSrc, rowItemWidth, onPress, index, numItems}) => {
-  const imgWidth = rowItemWidth*.8
-  return (
-    <View style={[styles.rowContainer, {alignItems:alignment(index,numItems,2), height:imgWidth+thumbHeightBump, minWidth:rowItemWidth}]} >
-      <View  style={[styles.thumbContainer, { width:imgWidth-itemBuffer, height:imgWidth+thumbHeightBump}]} >
-        <TouchableOpacity onPress={()=>onPress(index)} >
-          <Image style={[styles.thumbnail, {minWidth:imgWidth-itemBuffer, minHeight:imgWidth+imgBump}]} source={imageSrc} />
-          {/* <Image style={[styles.thumbnail, {width:imgWidth-itemBuffer, height:imgWidth+imgBump}]} source={imageSrc} /> */}
-          { renderNew(timeFirstRead) }
-        </TouchableOpacity>
+const padGen = (index, numItems, itemsPerRow) => {
+  const s = SPACE_BETWEEN_COVERS/2
+  return ((index + numItems) % itemsPerRow) ? {marginRight:s} : {marginLeft:s}
+}
+
+export default class GridItem extends Component {
+ constructor (props) {
+    super(props)
+  }
+
+  getHeight(w,h) {
+      const scaleX = MAX_COVER_WIDTH/w
+      const hX = h*scaleX
+      // const wX =  MAX_COVER_WIDTH
+      //
+      // const scaleY = MAX_COVER_HEIGHT/h
+      // const hY = MAX_COVER_HEIGHT
+      // const wY = w*scaleY
+
+      return (hX < MAX_COVER_HEIGHT) ?   hX : MAX_COVER_HEIGHT
+  }
+
+  render() {
+    const adjustedHeight = this.getHeight(this.props.imageWidth, this.props.imageHeight)
+    return (
+      <View style={[styles.rowContainer, {
+        alignItems:alignment(this.props.index,this.props.numItems,2),
+        }]} >
+
+        <View style={[styles.thumbContainer, {
+          ...padGen(this.props.index,this.props.numItems,2),
+          height:adjustedHeight}]} >
+
+          <TouchableOpacity
+            style={styles.touchable}
+            onPress={()=>this.props.onPress(this.props.index)} >
+
+            <Image style={[styles.thumbnail, {height:adjustedHeight}]}
+              source={this.props.imageSrc} />
+            {/* <Image style={[styles.thumbnail, {width:imgWidth-ITEM_BUFFER, height:imgWidth+imgBump}]} source={imageSrc} /> */}
+            {/* { renderNew(this.props.timeFirstRead) } */}
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  )
-}
+    )
+  }
 
+}
 
 const styles = StyleSheet.create({
   rowContainer: {
     flex:1,
     flexDirection:'column',
+    justifyContent:'flex-end',
     marginBottom: SPACE_BETWEEN_SHELVES,
+    height:MAX_COVER_HEIGHT
     // borderWidth:2,
     // borderColor:'red',
+    // backgroundColor:'red',
   },
   thumbContainer: {
-    flex:1,
-    flexDirection:'column',
+    // flex:1,
+    // alignSelf:'flex-end',
+
+    width:MAX_COVER_WIDTH,
+    // justifyContent:'flex-end',
+    // backgroundColor:'green',
     // borderColor: 'green',
     // borderWidth: 2,
   },
+  touchable: {
+    flex:1,
+    // flexDirection:'column',
+    // alignItems:'flex-end'
+  },
   thumbnail: {
+    // flex:1,
+    width:MAX_COVER_WIDTH,
+    // alignSelf:'flex-end',
     resizeMode: 'contain',
   },
   newicon: {

@@ -28,6 +28,8 @@ export default STGridView = ({items, itemsPerRow, onPress, renderHeader}) => (
               title={r.title}
               // imageSrc={'../../../assets/img/spines/bird_spine.png'}
               imageSrc={{uri:`${r.awsKey}_spine`}}
+              imageWidth={r.coverDims.x}
+              imageHeight={r.coverDims.y}
               timeFirstRead={r.timeFirstRead}
               rowItemWidth={(width-(2*murrginz))/itemsPerRow}
               onPress={onPress}

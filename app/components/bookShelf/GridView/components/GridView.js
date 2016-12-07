@@ -15,6 +15,11 @@ import {
 
 import BookShelfVisual from './BookShelfVisual'
 
+import { MAX_COVER_HEIGHT } from './GridItem'
+import { SHELF_THICKNESS } from './BookShelfVisual'
+const COVER_MASK_BUMP = 13
+const SPACE_BETWEEN_SHELVES = 40
+
 export default class CollectionView extends Component {
     constructor(props) {
       super(props)
@@ -42,7 +47,7 @@ export default class CollectionView extends Component {
 
     renderShelfVisual(items, itemsPerRow) {
       if (items.length == itemsPerRow && !items[0].dummy) {
-        return <BookShelfVisual width={300} />
+        return   <BookShelfVisual />
       }
       return null
     }
@@ -57,8 +62,10 @@ export default class CollectionView extends Component {
       })
       return (
         <View style={styles.group}>
-          <View style={{flexDirection:'row', flex:1,}}>
-            {items}
+          <View style={styles.thumbContainer}>
+            <View style={styles.row}>
+              {items}
+            </View>
             { this.renderShelfVisual(group, itemsPerRow) }
           </View>
         </View>
@@ -80,8 +87,20 @@ export default class CollectionView extends Component {
 
 const styles = StyleSheet.create({
   group: {
+    flex:1,
+    height:MAX_COVER_HEIGHT + COVER_MASK_BUMP,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
+    marginBottom:SPACE_BETWEEN_SHELVES,
+    // backgroundColor:'blue'
+  },
+  thumbContainer: {
+    flex:1,
+    // flexDirection:'column',
+    // backgroundColor:'pink',
+  },
+  row: {
+    flex:1,
+    flexDirection:'row',
+    // backgroundColor:'red'
+  },
 })
