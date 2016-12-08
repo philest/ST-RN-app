@@ -4,6 +4,14 @@ import { connect } from 'react-redux'
 
 import { hideBackBarAndUnselectBubble } from 'app/composedActions'
 
+
+const toString = (item) => {
+  if (item) return item.toString();
+  return  null
+}
+
+const BUBBLE_DIAMETER = 47
+
 export class QuestionBubble extends Component {
 
   constructor (props) {
@@ -27,8 +35,8 @@ export class QuestionBubble extends Component {
 
   render () {
     const glowbump        = 15
-    const bubbleWidth     = this.props.width || 60
-    const bubbleHeight    = this.props.height || 60
+    const bubbleWidth     = this.props.width || BUBBLE_DIAMETER
+    const bubbleHeight    = this.props.height || BUBBLE_DIAMETER
     const bubbleRadius    = bubbleHeight/2                    // TODO add vert/horiz radius when needed
     const containerWidth  = bubbleWidth + glowbump
     const containerHeight = bubbleHeight + glowbump
@@ -38,7 +46,8 @@ export class QuestionBubble extends Component {
     return (
       <TouchableWithoutFeedback style={{width:containerWidth, height:containerHeight}} onPress={()=>this.onPress(this.props.onPress)}>
         <View style={[styles.glow, {backgroundColor: glowAlpha, borderRadius:containerRadius, width:containerWidth, height:containerHeight,}]}>
-          <View style={[styles.bubble, {borderRadius:bubbleRadius, width:bubbleWidth, height:bubbleHeight}]}>
+        <View style={[styles.shadow, {borderRadius:bubbleRadius, width:bubbleWidth, height:bubbleHeight}]} />
+          <View style={[styles.bubble, {borderRadius:bubbleRadius, width:bubbleWidth, height:bubbleHeight, transform:[{rotateZ:this.props.ang||'20deg'}]}]}>
             <Text style={[styles.bubbleText, {fontSize:bubbleWidth-15}]}>?</Text>
           </View>
         </View>
@@ -59,6 +68,12 @@ const styles = StyleSheet.create({
   },
   glow: {
     justifyContent:'center'
+  },
+  shadow:{
+    position:'absolute',
+    left:6,
+    bottom:4,
+    backgroundColor: 'rgba(0,0,0,0.4)'
   },
   bubble: {
     backgroundColor: '#ed7a44',

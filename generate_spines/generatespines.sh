@@ -1,7 +1,7 @@
 
 INPUTFOLDER1="original"
 OUTPUT1="output_svg"
-OUTPUT2="output_img2"
+OUTPUT2="output_img"
 
 
 rm -r $OUTPUT1 $OUTPUT2;

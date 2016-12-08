@@ -56,6 +56,7 @@ export class StoryPage extends Component {
         imgWidth={this.state.imgWidth} imgHeight={this.state.imgHeight}
         x={b.x} y={b.y}
         text={b.text}
+        ang={b.ang}
         onPress={setTextAndSelectBubble}
       />
     })

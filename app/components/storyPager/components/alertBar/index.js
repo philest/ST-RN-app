@@ -16,7 +16,7 @@ import { connect } from 'react-redux'
 import TopAlert from 'app/components/topAlert'
 
 const BACK_BAR_HEIGHT = 60
-const SUGGESTION_HEIGHT = 100
+const SUGGESTION_HEIGHT = 70
 
 var COMPONENT_NAMES = ['Title', 'LeftButton', 'RightButton'];
 const TEXT_PADDING = 15
@@ -38,11 +38,14 @@ export class PagerAlert extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-    const bubbleToNone = (this.props.bubbleOpen && this.props.backBarHidden) && !nextProps.bubbleOpen
+    // TODO: lol simplyify this?
+    const bubbleToNone   = (this.props.bubbleOpen && this.props.backBarHidden) && !nextProps.bubbleOpen
+    const bubbleToBubble = this.props.bubbleOpen && nextProps.bubbleOpen
+    const noneToBubble   =  !this.props.bubbleOpen && nextProps.bubbleOpen
     this.setState({
       hide: (nextProps.backBarHidden && !nextProps.bubbleOpen),
       alertHeight: nextProps.bubbleOpen ? SUGGESTION_HEIGHT : BACK_BAR_HEIGHT,
-      displayBubbleInfo: bubbleToNone || (!this.props.bubbleOpen && nextProps.bubbleOpen)
+      displayBubbleInfo: bubbleToNone || bubbleToBubble || noneToBubble
     })
   }
 

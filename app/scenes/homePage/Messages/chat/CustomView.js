@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import {
   Linking,
-  MapView,
-  Platform,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -15,6 +13,10 @@ import store      from 'app/createStore'
 import { bookListArray } from 'app/data/user/bookList/state'
 import { pushStorySplashPage } from 'app/composedActions'
 
+const COVER_WIDTH = 170
+
+const pushStory = (i) => store.dispatch(pushStorySplashPage(i))
+
 export default class CustomView extends Component {
   render() {
     const sindex = this.props.currentMessage.newStory
@@ -23,15 +25,15 @@ export default class CustomView extends Component {
       const s = bookListArray[sindex]
       const newStorySrc = {uri:`${s.awsKey}_spine`}
       return (
-        <View style={{backgroundColor:'white',  height:260}}>
-          <View style={{flex:1, marginTop:12, marginBottom:15, alignItems:'center'}}>
-            <View style={{transform:[{rotateZ:'-5deg'}]}}>
-              <TouchableOpacity onPress={()=>store.dispatch(pushStorySplashPage(sindex))}>
-                <Image resizeMode='contain' style={{width:200, height:200}} source={newStorySrc} />
+        <View style={styles.container}>
+          <View style={styles.imgWrapper}>
+            <View style={styles.imageTransform}>
+              <TouchableOpacity onPress={()=>pushStory(sindex)}>
+                <Image style={styles.image} source={newStorySrc} />
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={{flex:1, top:10}}onPress={()=>store.dispatch(pushStorySplashPage(sindex))}>
-            <Text style={{color:'black', fontSize:20, left: 5}}> Tap to read! </Text>
+            <TouchableOpacity style={styles.textWrap} onPress={()=>pushStory(sindex)}>
+              <Text style={styles.tapRead}> Tap to read! </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -44,7 +46,16 @@ export default class CustomView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'white'
+    backgroundColor:'white',
+    height:260
+  },
+  imgWrapper: {
+    flex:1,
+    paddingLeft:20,
+    paddingRight:20,
+    marginTop:12,
+    marginBottom:15,
+    alignItems:'center'
   },
   mapView: {
     width: 150,
@@ -52,16 +63,31 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     margin: 3,
   },
+  tapRead: {
+    color:'black',
+    fontSize:20,
+    left: 5
+  },
+  textWrap: {
+    flex:1,
+    top:10
+  },
+  image: {
+    width: COVER_WIDTH,
+    height: COVER_WIDTH,
+    resizeMode: 'contain'
+  },
+  imageTransform: {
+    transform:[{rotateZ:'-5deg'}]
+  }
 });
 
 CustomView.defaultProps = {
   currentMessage: {},
   containerStyle: {},
-  mapViewStyle: {},
 };
 
 CustomView.propTypes = {
   currentMessage: React.PropTypes.object,
   containerStyle: View.propTypes.style,
-  mapViewStyle: View.propTypes.style,
 };

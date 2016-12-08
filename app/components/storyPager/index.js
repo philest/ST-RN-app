@@ -50,10 +50,6 @@ class StoryPager extends Component {
     this.props.dispatch(setCurrentIndex(0));
   }
 
-  componentWillUnmount () {
-    this.props.dispatch(disableDrawer())
-    this.props.dispatch(hideBackBar())
-  }
 
   _renderPages (pages) {
     return pages.map((p, i) => {
