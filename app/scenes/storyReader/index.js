@@ -40,7 +40,7 @@ class ReaderContainer extends Component {
   }
 
   render () {
-    return <View>
+    return <View style={{flex:1, backgroundColor:'pink'}}>
       <ReaderModal backAction={()=>this.props.dispatch(NavigationActions.pop('root'))}/>
       <StatusBar hidden={this.state.statusBarHide} />
     </View>

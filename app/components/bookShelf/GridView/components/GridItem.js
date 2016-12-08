@@ -20,7 +20,7 @@ const ITEM_BUFFER = 8
 const THUMB_HEIGHT_BUMP = 35
 
 const MAX_COVER_WIDTH = 120
-export const MAX_COVER_HEIGHT = 150
+export const MAX_COVER_HEIGHT = 120
 
 const SPACE_BETWEEN_COVERS = 18
 

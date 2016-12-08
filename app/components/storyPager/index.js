@@ -8,7 +8,8 @@ import {
   ListView,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  StatusBar
+  StatusBar,
+  ViewPagerAndroid
 } from 'react-native'
 import { connect } from 'react-redux'
 import _ from 'lodash' // TODO: get this outta here?
@@ -52,17 +53,33 @@ class StoryPager extends Component {
 
 
   _renderPages (pages) {
-    return pages.map((p, i) => {
-      return <StoryPage key={i} pageInfo={p}/>
-    })
+
+    var pagesArr = [];
+
+
+    for (var i=0; i<pages.length; i++) {
+      const p = pages[i]
+      pagesArr.push(
+        <View  style={{ backgroundColor:'blue'}} key={i} >
+          {/* <Text>Piss</Text> */}
+          <StoryPage  pageInfo={p} imageSource={{uri:p.url}}/>
+        </View>
+      )
+    }
+
+    const pagesArr2 = pagesArr
+    return pagesArr2
   }
+
+
 
 
   render ()  {
     const info = this.props.storyInfo
+    const STSwiper = ViewPagerAndroid // TODO: figure out what the problem is... :(
     return(
-      <View>
-        <Swiper
+      <View style={{flex:1, backgroundColor:'red'}}>
+        <STSwiper
           index               = { this.props.savedPageNum || 0 }
           style               = { styles.swiper }
           loop                = { false }
@@ -71,7 +88,7 @@ class StoryPager extends Component {
           // renderPagination    = { this._renderPagination }
         >
           { this._renderPages( info.pagesToRender ) }
-        </Swiper>
+        </STSwiper>
         <AlertBar titleText={info.title} onPress={this.props.backAction }/>
       </View>
     )
@@ -80,8 +97,9 @@ class StoryPager extends Component {
 
 const styles = StyleSheet.create({
   swiper: {
-    alignSelf: 'flex-start',
-    backgroundColor:'black'
+    flex:1,
+    // backgroundColor:'black',
+    // alignSelf: 'flex-start',
   },
 })
 

@@ -102,7 +102,7 @@ export const bookListArray =  [
       awsKey: 'sam',
       description: "Sam adventures through space",
       offset:0,
-      numPages:10,
+      numPages:7,
       timeRevealedAt: Date.now(),
       timeFirstRead: 0,
       timeLastOpened: 0,

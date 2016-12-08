@@ -4,18 +4,34 @@ import { connect } from 'react-redux'
 
 import QuestionBubble from 'app/components/st-bubbles'
 
+const getScaledDims = (imgDims, containerDims) => {
+    const scaleX = containerDims.x/imgDims.x
+    const hX = imgDims.y*scaleX
+
+
+    if (hX > containerDims.y) { return {
+        scaledWidth: imgDims.x*containerDims.y/imgDims.y,
+        scaledHeight: containerDims.y
+      }
+    }
+    return {
+      scaledWidth: containerDims.x,
+      scaledHeight: hX
+    }
+}
 
 export default class CanvasBubble extends Component {
 
   render () {
-    const imgHeight = this.props.imgHeight
-    const imgWidth  = this.props.imgWidth
-    const xpos = imgWidth * this.props.x
-    const ypos = imgHeight * this.props.y
+
+    const {scaledWidth, scaledHeight} = getScaledDims(this.props.imgDims, this.props.containerDims)
+
+    const xPos = scaledWidth  * this.props.xPos
+    const yPos = scaledHeight * this.props.yPos
 
 
-    if (imgHeight && imgWidth) {
-      return <View style={[styles.canvasBubble, {top:ypos, left:xpos}]}>
+    if (scaledWidth && scaledHeight) {
+      return <View style={[styles.canvasBubble, {top:yPos, left:xPos}]}>
       <QuestionBubble
         {...this.props}
         width={this.props.bubbleWidth}

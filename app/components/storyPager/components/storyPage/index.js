@@ -8,20 +8,22 @@ import {
   ListView,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Image
+  TouchableNativeFeedback,
+  Image,
+  Platform
 } from 'react-native'
 // import Image from 'react-native-image-progress'
 import { connect } from 'react-redux'
 
-var { height, width } = Dimensions.get('window') // TODO: arggg what do about this
+var { wheight, wwidth } = Dimensions.get('window') // TODO: arggg what do about this
 
 // components
 import CanvasAwareBubble from '../canvasBubble'
 import { setTextAndSelectBubble } from 'app/composedActions'
 
 // actions
-import { setCurrentIndex, showBackBar, hideBackBar } from '../../state'
-import { disableDrawer, enableDrawer, closeDrawer } from 'app/components/readingSuggestion/state'
+import { hideBackBar, showBackBar } from '../../state'
+import { closeDrawer } from 'app/components/readingSuggestion/state'
 import { setSelectedBubble } from 'app/components/st-bubbles/state'
 import { hideBackBarAndUnselectBubble} from 'app/composedActions'
 
@@ -31,20 +33,26 @@ export class StoryPage extends Component {
     super(props)
 
     this.state = {
-      imgWidth: 0,
-      imgHeight: 0
+      imgDims: {
+        x: 0,  y: 0
+      },
+      containerDims: {
+        x:0, y:0
+      }
     }
 
     this._toggleNav = this._toggleNav.bind(this)
     this._renderBubbles = this._renderBubbles.bind(this)
-    this._setImgDims = this._setImgDims.bind(this)
+    this._setImgContainerDims = this._setImgContainerDims.bind(this)
 
   }
 
-  _setImgDims (e) {
+  _setImgContainerDims (e) {
     this.setState({
-      imgWidth: e.nativeEvent.layout.width,
-      imgHeight: e.nativeEvent.layout.height
+      containerDims: {
+        x: e.nativeEvent.layout.width,
+        y: e.nativeEvent.layout.height
+      }
     })
   }
 
@@ -53,8 +61,9 @@ export class StoryPage extends Component {
     return bubbles.map((b,i)=>{
       return <CanvasAwareBubble
         key={`${pageIndex}${i}bbl`}
-        imgWidth={this.state.imgWidth} imgHeight={this.state.imgHeight}
-        x={b.x} y={b.y}
+        imgDims={this.state.imgDims}
+        containerDims={this.state.containerDims}
+        xPos={b.x} yPos={b.y}
         text={b.text}
         ang={b.ang}
         onPress={setTextAndSelectBubble}
@@ -76,23 +85,32 @@ export class StoryPage extends Component {
     this.props.dispatch(hideBackBarAndUnselectBubble())
   }
 
+  componentDidMount () {
+    Image.getSize(this.props.imageSource.uri, (width, height) => {
+      this.setState({imgDims: {x:width, y: height}})
+    })
+  }
+
   render () {
     p = this.props.pageInfo
+    // return ( <View>
+    //   <Text>poop</Text>
+    // </View>
+    //
+    // )
+
+    const Touch = (Platform.OS =='android') ? TouchableWithoutFeedback : TouchableWithoutFeedback
     return (
       <View  style={ styles.container } >
-        <TouchableWithoutFeedback  onPress={ this._toggleNav }>
-          <View style={ styles.imgWrapper }>
+        <Touch style={{flex:1}} onPress={ this._toggleNav } onLayout={ this._setImgContainerDims }>
             <Image
-              source         = {{ uri: p.url }}
-              indicatorProps = {{ size: 80, color: 'pink', style: { backgroundColor:'black' }}}
-              resizeMode     =  'contain'
-              style          = { styles.img }
+              source         = {this.props.imageSource}
+              style          = {[ styles.img, {width:wwidth, height:wheight}] }
               threshold      = { 200 }
-              onLayout       = { this._setImgDims }
+              // indicatorProps = {{ size: 80, colorx: 'pink', style: { backgroundColor:'black' }}}
               //renderIndicator= { () => <Spinner color='white' type='Wave'/> }
             />
-          </View>
-        </TouchableWithoutFeedback>
+        </Touch>
         { this._renderBubbles(p.bubbles, p.i) }
       </View>
     )
@@ -108,16 +126,13 @@ export default connect(mapStateToProps)(StoryPage)
 
 const styles = StyleSheet.create({
   img: {
-    flex: 1
-  },
-  imgWrapper: {
-    flex:1,
-    alignSelf:'center',
-    maxHeight:height,
-    minWidth:width,
+    flex: 1,
+    resizeMode:'contain'
   },
   container: {
     flex:1,
+    height: wheight,
+    width: wwidth,
     backgroundColor:'black'
   },
 })

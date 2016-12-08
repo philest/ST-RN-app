@@ -92,7 +92,7 @@ export default class App extends Component {
         <NavigationProvider context={navigationContext}>
           <StatusBar hidden={false} />
           <PushController />
-            <View style={{flex:1, height:this.state.visibleHeight, maxHeight:this.state.visibleHeight}}>
+            <View style={{flex:1, height:this.state.visibleHeight}}>
               <StackNavigation
                 navigatorUID='root'
                 initialRoute={Router.getRoute('home')}
